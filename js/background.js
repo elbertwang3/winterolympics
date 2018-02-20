@@ -1,74 +1,99 @@
-bubblewidth = window.innerWidth;
-  bubbleheight = window.innerHeight;
-  bubblemargin = {top: 30, bottom: 30, right: 30, left: 30}
-
-
-  bubblesdiv = d3.select('.bubbles')
-
-  medalColor = d3.scaleOrdinal()
-    .domain([1,2,3])
-    .range(['#FFD700', "#C0C0C0", "#CD7F32"])
 
 
 
-var bubblesvg = bubblesdiv.append("svg")
-          .attr("width", bubblewidth)
-          .attr("height", bubbleheight)
-          .attr("class", "bubblessvg")
+//Home Page Graphic
+//adapted from https://bl.ocks.org/mbostock/3231307
 
-      var base = 4,
-          dif = 12;
+var width = d3v3.select(".bubbles").node().clientWidth,
+    height = d3v3.select(".bubbles").node().clientHeight;
 
-      var fakemedals = d3.range(300).map(function() { return {'radius': Math.random() * dif + base, 'color': medalColor(Math.floor(Math.random() * 3) + 1)  }})   
-      console.log(fakemedals);
-      rootmedal = fakemedals[0];
-      rootmedal.radius = 0;
-      rootmedal.fixed = true;
+var num = 300,
+    base = 4,
+    dif = 12;
 
-      const forceX = d3.forceX(bubblewidth / 2).strength(0.005)
-      const forceY = d3.forceY(bubbleheight / 2).strength(0.005)
+var nodes = d3v3.range(num).map(function() { return {radius: Math.random() * dif + base }; }),
+    root = nodes[0]
+   color = ['#FFD700', "#C0C0C0", "#CD7F32"];
 
-      var simulation =  d3.forceSimulation()
-            .velocityDecay(0.15) //velocityDecay is how much the bubbles go out when mousing around
-            .force("x", forceX)
-            .force("y", forceY)
-            .force("collide", d3.forceCollide().radius(function(d){
-              if(d === rootmedal){
-                return Math.random() * 50 + 300;
-              }
-              return d['radius'] + 5
-            }))
-            .nodes(fakemedals).on("tick", ticked);
-                  
-   
+root.radius = 0;
+root.fixed = true;
+root.px = width/2;
+root.py = height/2;
 
-      var medalsselection = bubblesvg.selectAll(".node")
-          .data(fakemedals)
+var force = d3v3.layout.force()
+    .gravity(0.015)
+    .charge(function(d, i) { return i ? 0 : - (height + width); })
+    .nodes(nodes)
+    .size([width, height]);
 
-      var node = medalsselection
-        .enter()
-        .append("circle")
-        .attr("class", "node")
-        .attr("r", function(d) { console.log(d); return d['radius']; })
-        .attr("fill", function(d, i) { return d['color'] });
+force.start();
 
-      node.transition()
-    .duration(750)
-    .delay(function(d, i) { return i * 5; })
-    .attrTween("r", function(d) {
-      var i = d3.interpolate(0, d.radius);
-      return function(t) { return d.radius = i(t); };
-    });
+var canvas = d3v3.select(".bubbles").append("canvas")
+    .attr("width", width)
+    .attr("height", height);
 
-      function ticked(e) {
-        bubblesvg.selectAll("circle")
-          .attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-      };
+var context = canvas.node().getContext("2d");
 
-      bubblesvg.on("mousemove", function() {
-        var p1 = d3.mouse(this);
-        rootmedal.fx = p1[0];
-        rootmedal.fy = p1[1];
-        simulation.alphaTarget(0.3).restart();//reheat the simulation //how 
-      });
+force.on("tick", function(e) {
+  var q = d3v3.geom.quadtree(nodes),
+      i,
+      d,
+      n = nodes.length;
+
+  for (i = 1; i < n; ++i) q.visit(collide(nodes[i]));
+
+  context.clearRect(0, 0, width, height);
+  force.size([width, height]);
+  for (i = 1; i < n; ++i) {
+    context.fillStyle = color[i % color.length];
+    context.globalAlpha = 0.6;
+    d = nodes[i];
+    context.moveTo(d.x, d.y);
+    context.beginPath();
+    context.arc(d.x, d.y, d.radius, 0, 2 * Math.PI);
+    context.fill();
+  }
+});
+
+canvas.on("mousemove", move);
+canvas.on("touchmove", move);
+
+function move() {
+  var p1 = d3v3.mouse(this);
+  root.px = p1[0];
+  root.py = p1[1];
+  force.resume();
+};
+
+function collide(node) {
+  var r = node.radius + 16,
+      nx1 = node.x - r,
+      nx2 = node.x + r,
+      ny1 = node.y - r,
+      ny2 = node.y + r;
+  return function(quad, x1, y1, x2, y2) {
+    if (quad.point && (quad.point !== node)) {
+      var x = node.x - quad.point.x,
+          y = node.y - quad.point.y,
+          l = Math.sqrt(x * x + y * y),
+          r = node.radius + quad.point.radius + 7;
+      if (l < r) {
+        l = (l - r) / l * .5;
+        node.x -= x *= l;
+        node.y -= y *= l;
+        quad.point.x += x;
+        quad.point.y += y;
+      }
+    }
+    return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+  };
+}
+
+$(window).on("resize", function () {
+  width = d3v3.select("#background").node().clientWidth,
+  height = d3v3.select("#background").node().clientHeight;
+  canvas.attr("width", width).attr("height", height);
+  force.start();
+});
+
+    
