@@ -69,24 +69,15 @@ var scrollVis = function(medals, countries) {
     var setupSections = function () {
         // activateFunctions are called each
         // time the active section changes
-    /*activateFunctions[0] = showAnno;
-    activateFunctions[1] = showBeeswarm;
-    activateFunctions[2] = showBeforePhoneSwitch;
-    activateFunctions[3] = showAndroid;
-    activateFunctions[4] = showIphone;
-    activateFunctions[5] = showObama;
-    activateFunctions[6] = showClinton;
-    activateFunctions[7] = showCnn;
-    activateFunctions[8] = searchTerm;
-    activateFunctions[9] = transitionScatterTimeOfDay;
-    activateFunctions[10] = showFoxAndFriends;
-    activateFunctions[11] = showAndroid;
-    activateFunctions[12] = showIphone;
-    activateFunctions[13] = scatterTimeline;*/
+    activateFunctions[0] = showIntro;
+    activateFunctions[1] = showKorea;
+    activateFunctions[2] = showChina;
+    activateFunctions[3] = showAllHosts;
+   
     
-    for (var i = 0; i < 20; i++) {
+    /*for (var i = 0; i < 20; i++) {
       activateFunctions[i] = function () {};
-    }
+    }*/
 
     // updateFunctions are called whilec
     // in a particular section to update
@@ -99,6 +90,19 @@ var scrollVis = function(medals, countries) {
     }
     //updateFunctions[7] = updateCough;
   };
+
+  function showIntro() {
+
+  }
+  function showKorea() {
+
+  }
+  function showChina() {
+
+  }
+  function showAllHosts() {
+
+  }
 
  
 
@@ -123,10 +127,12 @@ var scrollVis = function(medals, countries) {
 d3.queue()
     .defer(d3.csv, "data/medals.csv", type)
     .defer(d3.json, "data/world_countries.json")
+    .defer(d3.csv, "data/gamescoded.csv", type2)
     .await(display);
 
-function display(error,medals, countries) {
+function display(error,medals, countries, games) {
 	console.log(countries);
+	console.log(games);
   	var plot = scrollVis(medals, countries);
 
     d3.select('#vis')
@@ -167,4 +173,17 @@ function type(d) {
  
 
   return d;
+}
+function type2(d) {
+	console.log(d['sports'])
+ 	d['countriesparticipating'] = +d['countriesparticipating'];
+ 	d['participants'] = +d['participants'];
+ 	d['men'] = +d['men'];
+ 	d['women'] = +d['women'];
+ 	d['sports'] = +d['sports'];
+ 	d['events'] = +d['events'];
+ 	d['latitude'] = +d['latitude'];
+ 	d['longitude'] = +d['longitude'];
+ 	d['year'] = +d['year'];
+  	return d;
 }

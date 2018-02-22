@@ -1,6 +1,9 @@
-body {
+body, html {
 	margin: 0;
+    height: 100%;
 }
+
+
 .title {
 	position: absolute;
 	margin: 0 auto;
@@ -142,7 +145,7 @@ body {
 
 .bubbles {
 	width: 100%;
-    height: 100%;
+   height: 100%;
     position: absolute;
     z-index: 1;
     background-color: #2A2738;
@@ -207,6 +210,13 @@ body {
 }
 
 .countries .borders {
-	stroke: #ffd29c;
+	stroke: #A99D8F;
 	fill: none;
+}
+
+
+.city {
+	font-family: "Roboto";
+	text-transform: uppercase;
+	font-weight: 600;
 }
