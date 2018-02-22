@@ -1,4 +1,6 @@
-
+body {
+	margin: 0;
+}
 .title {
 	position: absolute;
 	margin: 0 auto;
@@ -34,6 +36,7 @@
 	margin: 0 auto;
 	height: 230.98px;
 	padding-top: 5rem;
+	pointer-events: none;
 }
 
 
@@ -48,12 +51,14 @@
 	text-align: center;
 	display: block;
 	padding: 1.5rem;
+	z-index: 5;
+	pointer-events: all;
 
 
 }
 
 body {
-	background-color: #2A2738;
+	
 }
 
 .byline-div {
@@ -102,25 +107,38 @@ body {
 }
 
 #vis {
-	position: fixed;
+
 	  left: 0;
-	  z-index: 3;
+
+	position: absolute;
+	clear: both;
+
 }
 	
+
+
 #graphic {
 	position: relative;
+	clear: both;
+	content: "";
 }
-
 #sections {
-  left: 0;
+	left: 0;
+	position: absolute;
+  top: 0px;
+  z-index: 90;
+
   clear: both;
 }
+
+
 
 .bubbles {
 	width: 100%;
     height: 100%;
     position: absolute;
     z-index: 1;
+    background-color: #2A2738;
 }
 
 .node {
@@ -129,8 +147,58 @@ body {
 
 .intro {
 	position: relative;
+	z-index: 2;
+	height: 100%;
+	pointer-events: none;
 }
 
-.titlecontainer {
-	pointer-events: none;
+.step .prose {
+	display: block;
+	margin: auto;
+	text-align: left;
+	font-family: "Merriweather";
+	font-size: 16;
+	line-height: 1.8;
+	
+	padding: 1rem;
+	color: white;
+
+}
+
+.step {
+	 margin-bottom: 500px;
+	 padding: 1rem;
+}
+
+.step h2 {
+
+	font-family: "Merriweather";
+	font-size: 24px;
+	text-align: center;
+	font-weight: 900;
+}
+.step:last-child {
+	margin-bottom: 200px;
+}
+
+.step:first-child {
+	margin-top: 200px;
+}
+
+.is_fixed {
+	position: fixed !important;
+	top: 0;
+
+}
+
+.is_unfixed {
+	position: absolute !important;
+	top: 0;
+
+}
+
+.is_bottom {
+	position: absolute;
+	bottom: 0;
+    top: auto;
 }

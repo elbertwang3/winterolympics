@@ -4,8 +4,8 @@
 //Home Page Graphic
 //adapted from https://bl.ocks.org/mbostock/3231307
 
-var width = d3v3.select(".bubbles").node().clientWidth,
-    height = d3v3.select(".bubbles").node().clientHeight;
+var bgwidth = d3v3.select(".bubbles").node().clientWidth,
+    bgheight = d3v3.select(".bubbles").node().clientHeight;
 
 var num = 300,
     base = 4,
@@ -17,20 +17,20 @@ var nodes = d3v3.range(num).map(function() { return {radius: Math.random() * dif
 
 root.radius = 0;
 root.fixed = true;
-root.px = width/2;
-root.py = height/2;
+root.px = bgwidth/2;
+root.py = bgheight/2;
 
 var force = d3v3.layout.force()
     .gravity(0.015)
-    .charge(function(d, i) { return i ? 0 : - (height + width); })
+    .charge(function(d, i) { return i ? 0 : - (bgheight + bgwidth); })
     .nodes(nodes)
-    .size([width, height]);
+    .size([bgwidth, bgheight]);
 
 force.start();
 
 var canvas = d3v3.select(".bubbles").append("canvas")
-    .attr("width", width)
-    .attr("height", height);
+    .attr("width", bgwidth)
+    .attr("height", bgheight);
 
 var context = canvas.node().getContext("2d");
 
@@ -42,8 +42,8 @@ force.on("tick", function(e) {
 
   for (i = 1; i < n; ++i) q.visit(collide(nodes[i]));
 
-  context.clearRect(0, 0, width, height);
-  force.size([width, height]);
+  context.clearRect(0, 0, bgwidth, bgheight);
+  force.size([bgwidth, bgheight]);
   for (i = 1; i < n; ++i) {
     context.fillStyle = color[i % color.length];
     context.globalAlpha = 0.6;
@@ -90,9 +90,9 @@ function collide(node) {
 }
 
 $(window).on("resize", function () {
-  width = d3v3.select("#background").node().clientWidth,
-  height = d3v3.select("#background").node().clientHeight;
-  canvas.attr("width", width).attr("height", height);
+  bgwidth = d3v3.select(".bubbles").node().clientWidth,
+  bgheight = d3v3.select(".bubbles").node().clientHeight;
+  canvas.attr("width", bgwidth).attr("height", bgheight);
   force.start();
 });
 

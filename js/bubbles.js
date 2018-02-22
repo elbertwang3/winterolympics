@@ -1,80 +1,70 @@
-var scrollVis = function(medals) {
-  /*bubblewidth = window.innerWidth;
-  bubbleheight = window.innerHeight;
-  bubblemargin = {top: 30, bottom: 30, right: 30, left: 30}
+var scrollVis = function(medals, countries) {
+	viz = d3.select("#vis"),
+  	width = window.innerWidth,
+  	height = window.innerHeight;
+  	margin = {top: 30, bottom: 30, right: 30, left: 30}
 
 
-  bubblesdiv = d3.select('.bubbles')*/
-  var lastIndex = -1;
-  var activeIndex = 0;
-  var activateFunctions = [];
-  var updateFunctions = [];
+
+  	var lastIndex = -1;
+  	var activeIndex = 0;
+  	var activateFunctions = [];
+  	var updateFunctions = [];
 
   /*medalColor = d3.scaleOrdinal()
     .domain([1,2,3])
     .range(['#FFD700', "#C0C0C0", "#CD7F32"])*/
-  var chart = function (selection) {
-      selection.each(function (rawData) {
-        medals = rawData;
-        setupVis(medals);
-        setupSections();
-      })
+  	var chart = function (selection) {
+      	selection.each(function (rawData) {
+      		console.log(selection)
+      		console.log(rawData);
+        	medals = rawData;
+        	setupVis(medals, countries);
+        	setupSections();
+      	})
     }
 
-    var setupVis = function(medals) {
-       /*var bubblesvg = bubblesdiv.append("svg")
-          .attr("width", bubblewidth)
-          .attr("height", bubbleheight)
-          .attr("class", "bubblessvg")
+    var setupVis = function(medals, countries) {
+    	var format = d3.format(",");
+		var path = d3.geoPath();
+		var svg = viz
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .append('g')
+            .attr('class', 'map');
 
-      var base = 4,
-          dif = 12;
+		var projection = d3.geoMercator()
+            .scale(130)
+            .translate( [width / 2, height / 1.5]);
 
-      var fakemedals = d3.range(300).map(function() { return {'radius': Math.random() * dif + base, 'color': medalColor(Math.floor(Math.random() * 3) + 1)  }})   
-      console.log(fakemedals);
-      rootmedal = fakemedals[0];
-      rootmedal.radius = 0;
-      rootmedal.fixed = true;
+		var path = d3.geoPath().projection(projection);
 
-      const forceX = d3.forceX(bubblewidth / 2).strength(0.02)
-      const forceY = d3.forceY(bubbleheight / 2).strength(0.04)
 
-      var simulation =  d3.forceSimulation()
-            .velocityDecay(0.5) //velocityDecay is how much the bubbles go out when mousing around
-            .force("x", forceX)
-            .force("y", forceY)
-            .force("collide", d3.forceCollide().radius(function(d){
-              if(d === rootmedal){
-                return Math.random() * 300 + 50;
-              }
-              return d['radius'] + 6
-            }))
-            .nodes(fakemedals).on("tick", ticked);
-                  
-   
+  		
 
-      var medalsselection = bubblesvg.selectAll(".node")
-          .data(fakemedals)
+  		svg.append("g")
+      		.attr("class", "countries")
+    		.selectAll("path")
+      		.data(countries.features)
+    		.enter().append("path")
+      		.attr("d", path)
+      		//.style("fill", function(d) { return color(populationById[d.id]); })
+      		.style('stroke', 'white')
+      		.style('stroke-width', 1.5)
+      		.style("opacity",0.8)
+      		// tooltips
+       		 .style("stroke","white")
+        		.style('stroke-width', 0.3)
+     
 
-      medalsselection
-        .enter()
-        .append("circle")
-        .attr("class", "node")
-        .attr("r", function(d) { console.log(d); return d['radius']; })
-        .attr("fill", function(d, i) { return d['color'] });
+  		svg.append("path")
+      		.datum(topojson.mesh(countries.features, function(a, b) { return a.id !== b.id; }))
+       		// .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
+      		.attr("class", "names")
+      		.attr("d", path);
 
-      function ticked(e) {
-        bubblesvg.selectAll("circle")
-          .attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-      };
-
-      bubblesvg.on("mousemove", function() {
-        var p1 = d3.mouse(this);
-        rootmedal.fx = p1[0];
-        rootmedal.fy = p1[1];
-        simulation.alphaTarget(0.1).restart();//reheat the simulation //how 
-      });*/
+      
 
 
     }
@@ -131,45 +121,44 @@ var scrollVis = function(medals) {
   return chart;
 }
 
-var w = window.innerWidth,
-    h = window.innerHeight;
 
 d3.queue()
     .defer(d3.csv, "data/medals.csv", type)
+    .defer(d3.json, "data/world_countries.json")
     .await(display);
 
-function display(error,medals) {
-
-  var plot = scrollVis();
+function display(error,medals, countries) {
+	console.log(countries);
+  	var plot = scrollVis(medals, countries);
 
     d3.select('#vis')
-      .datum(medals)
-      .call(plot);
+      	.data([medals,countries])
+      	.call(plot);
 
-      var scroll = scroller()
-    .container(d3.select('#graphic'));
+     var scroll = scroller()
+    	.container(d3.select('#graphic'));
 
-     scroll(d3.selectAll('.step'));
+    scroll(d3.selectAll('.step'));
 
 
-       scroll.on('active', function (index) {
-    // highlight current step text
-    d3.selectAll('.step')
-      .style('opacity', function (d, i) { 
-         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 600) {
-            return i === index ? 0.8 : 0.1; 
-          } else {
+    scroll.on('active', function (index) {
+    	// highlight current step text
+    	d3.selectAll('.step')
+      		.style('opacity', function (d, i) { 
+         		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 600) {
+            		return i === index ? 0.8 : 0.1; 
+         		} else {
+         			return i === index ? 1 : 0.1; 
+      			}
+      		});
 
-        return i === index ? 1 : 0.1; 
-      }
-      });
-
-    // activate current section
-    plot.activate(index);
-  });
-        scroll.on('progress', function (index, progress) {
-    plot.update(index, progress);
-  });
+    	// activate current section
+    	plot.activate(index);
+  	});
+    
+    scroll.on('progress', function (index, progress) {
+    	plot.update(index, progress);
+  	});
 }
 
 function type(d) {

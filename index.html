@@ -4,7 +4,7 @@
 	    <meta charset="utf-8">
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <meta name="description" content="Trump's Greatest Hits">
+	    <meta name="description" content="Winter Olympics visualization">
 	    <meta name="author" content="Elbert Wang">
 	    <meta http-equiv="pragma" content="no-cache" />
      
@@ -42,15 +42,61 @@
 				  			</div>
   			</div>
 			<div id='graphic'>
-  				<!--<div id='sections'>
+  				<div id='sections'>
+  					
   					<section class="step">
-  						<div id="intro">
-  							
-				  		</div>
+  						<h2> where the winter olympics have been hosted</h2>
+  						<p class="prose">either do a mapbox map or d3 map</p>
   					</section>
   					<section class="step">
+  						<h2> Do host countries have an advantage/do better?</h2>
+  						<p class="prose">JOYPLOT here...hump = host year</p>
   					</section>
-  				</div>-->
+  					<section class="step">
+  						<h2> who wins the medals at the winter games?</h2>
+  						<p class="prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor sapien tortor, sed varius velit luctus quis. Fusce tincidunt nulla lacinia nunc viverra, non imperdiet ligula aliquet. Donec at diam tellus. Nulla egestas quam at dolor dapibus maximus. Suspendisse at mattis massa. Mauris elementum libero sem, ac sagittis mauris vehicula in.</p>
+  					</section>
+  					<section class="step">
+  						<h2> by pop</h2>
+  						<p class="prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor sapien tortor, sed varius velit luctus quis. Fusce tincidunt nulla lacinia nunc viverra, non imperdiet ligula aliquet. Donec at diam tellus. Nulla egestas quam at dolor dapibus maximus. Suspendisse at mattis massa. Mauris elementum libero sem, ac sagittis mauris vehicula in.</p>
+  					</section>
+  					<section class="step">
+  						<h2> by gdp</h2>
+	  						<p class="prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor sapien tortor, sed varius velit luctus quis. Fusce tincidunt nulla lacinia nunc viverra, non imperdiet ligula aliquet. Donec at diam tellus. Nulla egestas quam at dolor dapibus maximus. Suspendisse at mattis massa. Mauris elementum libero sem, ac sagittis mauris vehicula in.</p>
+  					</section>
+  					<section class="step">
+  						<h2> by temp</h2>
+  						<p class="prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor sapien tortor, sed varius velit luctus quis. Fusce tincidunt nulla lacinia nunc viverra, non imperdiet ligula aliquet. Donec at diam tellus. Nulla egestas quam at dolor dapibus maximus. Suspendisse at mattis massa. Mauris elementum libero sem, ac sagittis mauris vehicula in.</p>
+  					</section>
+  					<section class="step">
+  						<h2> increase in events with women</h2>
+  						<p class="prose">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam auctor sapien tortor, sed varius velit luctus quis. Fusce tincidunt nulla lacinia nunc viverra, non imperdiet ligula aliquet. Donec at diam tellus. Nulla egestas quam at dolor dapibus maximus. Suspendisse at mattis massa. Mauris elementum libero sem, ac sagittis mauris vehicula in.</p>
+  					</section>
+  					<section class="step">
+  						<h2> min avg max age of men/women for events</h2>
+  						<p class="prose">something like this graph from fivethirtyeight
+  						https://fivethirtyeight.com/features/the-u-s-is-on-pace-for-a-lousy-olympics/</p>
+  					</section>
+  					<section class="step">
+  						<h2> what countries dominate what sports? relative to...</h2>
+  						<p class="prose">something like this graph from fivethirtyeight
+  						matrix of countries and sports....green and red colors. us dominates snowboarding
+  					https://www.pinterest.co.uk/pin/400257485602560092/</p>
+  					</section>
+
+  					<section class="step">
+  						<h2> Downhill Dominance</h2>
+  						<p class="prose">something like this graph from fivethirtyeight
+  						https://fivethirtyeight.com/features/the-u-s-is-on-pace-for-a-lousy-olympics/</p>
+  					</section>
+  					<section class="step">
+  						<h2> Netherlands and long track</h2>
+  						<p class="prose">something like this graph from fivethirtyeight
+  						https://fivethirtyeight.com/features/the-u-s-is-on-pace-for-a-lousy-olympics/</p>
+  					</section>
+  					
+
+  				</div>
   			<div id='vis'>
   				
   			</div>
@@ -60,7 +106,8 @@
   	</main>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   		<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.12.2/d3.min.js"></script>
-  		<script src="js/d3.v3.min.js"
+  		<script src="js/d3.v3.min.js"></script>
+      <script src="https://d3js.org/topojson.v1.min.js"></script>
   		<script src="js/index.js"></script>
   			<script src="js/scroller.js"></script>
   		<script src="js/bubbles.js"></script>
