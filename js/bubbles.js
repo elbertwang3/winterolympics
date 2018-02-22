@@ -48,20 +48,18 @@ var scrollVis = function(medals, countries) {
     		.selectAll("path")
       		.data(countries.features)
     		.enter().append("path")
+    		.attr("class", "borders")
       		.attr("d", path)
       		//.style("fill", function(d) { return color(populationById[d.id]); })
-      		.style('stroke', 'white')
-      		.style('stroke-width', 1.5)
-      		.style("opacity",0.8)
+      		
       		// tooltips
-       		 .style("stroke","white")
-        		.style('stroke-width', 0.3)
+       		
      
 
   		svg.append("path")
       		.datum(topojson.mesh(countries.features, function(a, b) { return a.id !== b.id; }))
        		// .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
-      		.attr("class", "names")
+      		.attr("class", "borders")
       		.attr("d", path);
 
       
