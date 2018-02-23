@@ -20,6 +20,7 @@ var scrollVis = function(medals, countries, games) {
 
 
     var path = d3.geoPath();
+    var totalLength;
 	
 	var projection = d3.geoMercator()
         .scale(230)
@@ -34,6 +35,10 @@ var scrollVis = function(medals, countries, games) {
 
 
 	var mainline = d3.line()
+		.curve(d3.curveBasis);
+	var menline = d3.line()
+		.curve(d3.curveBasis);
+	var womenline = d3.line()
 		.curve(d3.curveBasis);
 
 
@@ -132,15 +137,15 @@ var scrollVis = function(medals, countries, games) {
       		.range([height-linemargin.bottom, linemargin.top])
 
       	participantScale = d3.scaleLinear()
-      		.domain(d3.extent(games, function(d) { return d['participants']}))
+      		.domain([0, 3000])
       		.range([height-linemargin.bottom, linemargin.top])
 
       	sportScale = d3.scaleLinear()
-      		.domain(d3.extent(games, function(d) { return d['sports']}))
+      		.domain([0, 15])
       		.range([height-linemargin.bottom, linemargin.top])
 
       	eventScale = d3.scaleLinear()
-      		.domain(d3.extent(games, function(d) { return d['events']}))
+      		.domain([0, 100])
       		.range([height-linemargin.bottom, linemargin.top])
 
       	games = games.filter(function(d) { return d['year'] != "2022"; })
@@ -156,20 +161,23 @@ var scrollVis = function(medals, countries, games) {
 			.attr("class", "yticks")
 			.selectAll("g")
 			.data(_.range(10, 105, 10))
+
+		
+		ytick = yticks
 			.enter()
 			.append("g")
 			.attr("class", "ytick-g")
 
 		//yticks.append("line")
 
-		yticks.append("text")
+		ytick.append("text")
 			.attr("x", width-linemargin.right + 5)
 			.attr("y", function(d) { return countriesScale(d); })
 			.text(function(d) { return d; })
 			.attr("class", "ytick-text")
 
 
-		yticks.append("line")
+		ytick.append("line")
 			.attr("x1", linemargin.left)
 			.attr("x2", width-linemargin.right)
 			.attr("y1", function(d) { return countriesScale(d); })
@@ -180,14 +188,31 @@ var scrollVis = function(medals, countries, games) {
 		mainline
 		    .x(function(d) { return yearScale(yearParser(d['year'])); })
 		    .y(function(d) { return countriesScale(d['countriesparticipating']); });
-
-
-		console.log(games);
 		
 		mainpath = lineg.append("path")
 	      	.datum(games)
 	      	.attr("class", "mainline")
 	      	.attr("d", mainline);
+
+	    
+
+	    menline
+		    .x(function(d) { return yearScale(yearParser(d['year'])); })
+		    .y(function(d) { return countriesScale(d['men']); });
+	    womenline
+		    .x(function(d) { return yearScale(yearParser(d['year'])); })
+		    .y(function(d) { return countriesScale(d['women']); });
+
+		menpath = lineg.append("path")
+	      	.datum(games)
+	      	.attr("class", "menline")
+	      	.attr("d", menline);
+
+	    menpath = lineg.append("path")
+	      	.datum(games)
+	      	.attr("class", "womenline")
+	      	.attr("d", womenline);
+
 
 
 
@@ -223,6 +248,10 @@ var scrollVis = function(medals, countries, games) {
 	    activateFunctions[2] = showChina;
 	    activateFunctions[3] = showAllHosts;
 	    activateFunctions[4] = showLineGraph;
+	    activateFunctions[5] = showParticipants;
+	    activateFunctions[6] = showMenWomen;
+	    activateFunctions[7] = showSports;
+	    //activateFunctions[8] = 
 	   
 	    
 	    /*for (var i = 0; i < 20; i++) {
@@ -292,6 +321,39 @@ var scrollVis = function(medals, countries, games) {
 	}
 
 	function showLineGraph() {
+
+		if (lastIndex >= 5) {
+			yticks = lineg.selectAll(".ytick-g").data(_.range(10, 105, 10))
+		
+			yticks.exit().remove()
+
+			ytick = yticks.enter().append("g")
+				.merge(yticks)
+			
+			ytick.select("line")
+				.attr("x1", linemargin.left)
+				.attr("x2", width-linemargin.right)
+				.attr("y1", function(d) { return countriesScale(d); })
+				.attr("y2", function(d) { return countriesScale(d); })
+	      
+	      	yticks
+			ytick.select("text")
+				.text(function(d) { console.log(d); return d; })
+				.attr("x", width-linemargin.right + 10)
+				.attr("y", function(d) { return countriesScale(d); })
+
+
+			mainline
+			    .x(function(d) { return yearScale(yearParser(d['year'])); })
+			    .y(function(d) { return countriesScale(d['countriesparticipating']); });
+
+			mainpath
+		      	.attr("d", mainline);
+
+
+		} else {		
+			
+		}
 		map
 			.transition()
 			.duration(500)
@@ -303,13 +365,13 @@ var scrollVis = function(medals, countries, games) {
 	    	.attr("opacity", 1)
 
 
-	    var totalLength = mainpath.node().getTotalLength();
+	    totalLength = mainpath.node().getTotalLength();
 	    mainpath
 	    	.attr("stroke-dasharray", totalLength + " " + totalLength)
       		.attr("stroke-dashoffset", -totalLength)
 			.transition()
 			.delay(500)
-	        .duration(3000)
+	        .duration(1000)
 	        .ease(d3.easeLinear)
 	        .attr("stroke-dashoffset", 0);
 
@@ -318,10 +380,56 @@ var scrollVis = function(medals, countries, games) {
 	}
 
 	function showParticipants() {
+		console.log("show participants")
+		yticks = lineg.selectAll(".ytick-g").data(_.range(300, 3300, 300))
+		
+		yticks.exit().remove()
+
+		ytick = yticks.enter().append("g")
+			.merge(yticks)
+		
+		ytick.select("line")
+			.attr("x1", linemargin.left)
+			.attr("x2", width-linemargin.right)
+			.attr("y1", function(d) { return participantScale(d); })
+			.attr("y2", function(d) { return participantScale(d); })
+      
+		ytick.select("text")
+			.text(function(d) { console.log(d); return d; })
+			.attr("x", width-linemargin.right + 10)
+			.attr("y", function(d) { return participantScale(d); })
+
+		mainline
+		    .x(function(d) { return yearScale(yearParser(d['year'])); })
+		    .y(function(d) { return participantScale(d['participants']); });
+
+		mainpath
+	      	.attr("d", mainline);
+
+	    totalLength = mainpath.node().getTotalLength();
+
+		mainpath
+	    	.attr("stroke-dasharray", totalLength + " " + totalLength)
+      		.attr("stroke-dashoffset", -totalLength)
+			.transition()
+			.delay(500)
+	        .duration(1000)
+	        .ease(d3.easeLinear)
+	        .attr("stroke-dashoffset", 0);
 
 	}
 
 	function showMenWomen() {
+		if (lastIndex >= 5) {
+
+		} else {
+			
+
+		}
+
+	}
+
+	function showSports() {
 
 	}
 
