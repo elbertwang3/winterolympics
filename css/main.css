@@ -44,11 +44,19 @@ body, html {
 
 
 .rings {
-	position: absolute;
     z-index: 1;
  	width: 500px;
-}
 
+    position: absolute;
+    left: 50%;
+  margin-left: -250px;
+
+}
+.ringscontainer {
+	position: relative;
+	display:block;
+    margin: 0 auto;
+}
 
 .logo {
 	text-align: center;
@@ -102,6 +110,7 @@ body {
 
 #sections .step:first-child {
 
+
 }
 
 #sections .step {
@@ -111,6 +120,8 @@ body {
 	 margin-right: auto;
 	 margin-left: auto;
 	 max-width: 500px;
+	 pointer-events: none;
+	 
 
 }
 
@@ -121,6 +132,7 @@ body {
 	position: absolute;
 	clear: both;
 	background-color: #fff9f1;
+	max-width: 1440px;
 
 }
 	
@@ -139,6 +151,8 @@ body {
   z-index: 90;
   width: 100%;
   clear: both;
+  pointer-events: none;
+
 }
 
 
@@ -212,11 +226,52 @@ body {
 .countries .borders {
 	stroke: #A99D8F;
 	fill: none;
+	stroke-width: 0.5px;
 }
 
 
-.city {
+.inactive {
+	opacity: 0;
+}
+
+.active {
+	opacity: 1;
+}
+
+.citydot.inactive {
+	pointer-events: none;
+}
+.citydot.active {
+	pointer-events: all;
+	cursor: pointer;
+}
+.citytext {
 	font-family: "Roboto";
 	text-transform: uppercase;
 	font-weight: 600;
+	color: #53412d;
+	pointer-events: none;
+}
+
+.zoomed {
+	font-size: 4px;
+}
+
+.unzoomed {
+	font-size: 10px;
+}
+
+@media only screen and (max-width: 600px) { 
+	.rings {
+		width: 400px;
+	 	left: 50%;
+	 	  margin-left: -200px;
+	}
+
+	.title p{
+		font-size: 24px;
+	}
+
+	
+
 }

@@ -1,7 +1,6 @@
 
 const ringwidth = 500
 $(window).on("resize", function() {
-      console.log("getting resized");
 	if (window.innerWidth < ringwidth) {
 		d3.select(".logo")
 			.attr("width", window.innerWidth - 20)
@@ -22,7 +21,7 @@ var bottomoffset;
   	 bottomoffset = $("#graphic").position().top + $("#sections").outerHeight(true);
 
   	if (window.pageYOffset >= topoffset && window.pageYOffset <= bottomoffset - window.innerHeight) {
-	  	console.log("GETTING fixed")
+	
 	  	d3.select("#vis").classed("is_fixed", true)
 	  	d3.select("#vis").classed("is_unfixed", false)
 	  	d3.select("#vis").classed("is_bottom", false)
