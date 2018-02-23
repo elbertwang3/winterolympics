@@ -18,18 +18,23 @@ var scrollVis = function(medals, countries, games) {
     	.attr("class", "linegraph")
     	.attr("opacity", 0)
 
+
     var path = d3.geoPath();
 	
 	var projection = d3.geoMercator()
         .scale(230)
         .translate( [width / 2, height / 1.5]);
 
-    var yearParser = d3.timeParse("%Y")
+    var yearParser = d3.timeParse("%Y");
+
    
    
 	
 	var path = d3.geoPath().projection(projection);
 
+
+	var mainline = d3.line()
+		.curve(d3.curveBasis);
 
 
   	var lastIndex = -1;
@@ -118,13 +123,12 @@ var scrollVis = function(medals, countries, games) {
 
 
       	yearScale = d3.scaleTime()
-      		.domain(d3.extent(games, function(d) { return yearParser(d['year']);}))
+      		.domain([yearParser("1924"), yearParser("2018")])
       		.range([linemargin.left, width-linemargin.right])
 
-      	yearScale.ticks(d3.timeYear.every(4));
 
       	countriesScale = d3.scaleLinear()
-      		.domain(d3.extent(games, function(d) { return d['countriesparticipating']}))
+      		.domain([0, 100])
       		.range([height-linemargin.bottom, linemargin.top])
 
       	participantScale = d3.scaleLinear()
@@ -139,14 +143,19 @@ var scrollVis = function(medals, countries, games) {
       		.domain(d3.extent(games, function(d) { return d['events']}))
       		.range([height-linemargin.bottom, linemargin.top])
 
-
+      	games = games.filter(function(d) { return d['year'] != "2022"; })
+      	years = games.map(function(d) { return yearParser(d['year'])});
+		console.log(years);
 		lineg.append("g")
+			.attr("class", "year-axis")
 		    .attr("transform", "translate(0," + (height - linemargin.bottom) + ")")
-		    .call(d3.axisBottom(yearScale))
+		    .call(d3.axisBottom(yearScale).tickValues(years).tickFormat(d3.timeFormat("'" + "%y")));
 
 		console.log(_.range(0, 105, 10))
-		yticks = lineg.selectAll("g")
-			.data(_.range(0, 105, 10))
+		yticks = lineg.append("g")
+			.attr("class", "yticks")
+			.selectAll("g")
+			.data(_.range(10, 105, 10))
 			.enter()
 			.append("g")
 			.attr("class", "ytick-g")
@@ -154,9 +163,36 @@ var scrollVis = function(medals, countries, games) {
 		//yticks.append("line")
 
 		yticks.append("text")
-			.attr("x", width-linemargin.right)
+			.attr("x", width-linemargin.right + 5)
 			.attr("y", function(d) { return countriesScale(d); })
-			.text(function(d) { return countriesScale(d); })
+			.text(function(d) { return d; })
+			.attr("class", "ytick-text")
+
+
+		yticks.append("line")
+			.attr("x1", linemargin.left)
+			.attr("x2", width-linemargin.right)
+			.attr("y1", function(d) { return countriesScale(d); })
+			.attr("y2", function(d) { return countriesScale(d); })
+			//.attr("stroke", "#")
+			.attr("class", "ytick-line")
+
+		mainline
+		    .x(function(d) { return yearScale(yearParser(d['year'])); })
+		    .y(function(d) { return countriesScale(d['countriesparticipating']); });
+
+
+		console.log(games);
+		
+		mainpath = lineg.append("path")
+	      	.datum(games)
+	      	.attr("class", "mainline")
+	      	.attr("d", mainline);
+
+
+
+
+
 
 
       	
@@ -235,17 +271,24 @@ var scrollVis = function(medals, countries, games) {
 	function showAllHosts() {
 
 		console.log(lastIndex);
-		 if (lastIndex >= 4) {
+		if (lastIndex >= 4) {
 		 	map
-			.transition()
-			.duration(500)
-			.attr('opacity', 1)
+				.transition()
+				.duration(500)
+				.attr('opacity', 1)
+
+
+			linegraph
+				.transition()
+				.duration(500)
+		    	.attr("opacity", 0)
 		}
 		else {
 			reset();
 			d3.selectAll(".city-g").attr("opacity", 1)
 			d3.selectAll(".citytext").attr("opacity", 0);
 		}
+
 	}
 
 	function showLineGraph() {
@@ -258,6 +301,27 @@ var scrollVis = function(medals, countries, games) {
 			.transition()
 			.duration(500)
 	    	.attr("opacity", 1)
+
+
+	    var totalLength = mainpath.node().getTotalLength();
+	    mainpath
+	    	.attr("stroke-dasharray", totalLength + " " + totalLength)
+      		.attr("stroke-dashoffset", -totalLength)
+			.transition()
+			.delay(500)
+	        .duration(3000)
+	        .ease(d3.easeLinear)
+	        .attr("stroke-dashoffset", 0);
+
+
+
+	}
+
+	function showParticipants() {
+
+	}
+
+	function showMenWomen() {
 
 	}
 

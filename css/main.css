@@ -121,7 +121,7 @@ body {
 	 margin-left: auto;
 	 max-width: 500px;
 	 pointer-events: none;
-	 
+
 
 }
 
@@ -159,7 +159,7 @@ body {
 
 .bubbles {
 	width: 100%;
-   height: 100%;
+   	height: 100%;
     position: absolute;
     z-index: 1;
     background-color: #2A2738;
@@ -249,7 +249,7 @@ body {
 	font-family: "Roboto";
 	text-transform: uppercase;
 	font-weight: 600;
-	color: #53412d;
+	fill: #53412d;
 	pointer-events: none;
 }
 
@@ -261,6 +261,38 @@ body {
 	font-size: 10px;
 }
 
+.ytick-line {
+	stroke: #A99D8F;
+	stroke-dasharray: 4, 4;
+}
+
+.ytick-text {
+	font-family: "Roboto";
+	font-size: 11px;
+	fill: #53412d;
+	alignment-baseline: middle;
+}
+
+.year-axis line {
+	stroke: #53412d;
+}
+
+.year-axis path {
+	stroke: #53412d;
+}
+
+.year-axis text {
+	fill: #53412d;
+
+}
+
+.line-g .mainline {
+	stroke: #2A2738;
+	fill: none;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-width: 2px;
+}
 @media only screen and (max-width: 600px) { 
 	.rings {
 		width: 400px;
