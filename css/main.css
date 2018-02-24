@@ -286,12 +286,25 @@ body {
 
 }
 
-.line-g .mainline {
-	stroke: #2A2738;
+.line-g .line {
+	
 	fill: none;
 	stroke-linecap: round;
 	stroke-linejoin: round;
 	stroke-width: 2px;
+}
+
+.line-g .mainline {
+	stroke: #2A2738;
+}
+
+.line-g .menline {
+	stroke: #1a80c4;
+}
+
+.line-g .womenline {
+	stroke: #cc3d3d;
+
 }
 @media only screen and (max-width: 600px) { 
 	.rings {
