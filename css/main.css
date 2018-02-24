@@ -295,17 +295,9 @@ body {
 }
 
 .line-g .mainline {
-	stroke: #2A2738;
+	stroke: #2f2d53;
 }
 
-.line-g .menline {
-	stroke: #1a80c4;
-}
-
-.line-g .womenline {
-	stroke: #cc3d3d;
-
-}
 @media only screen and (max-width: 600px) { 
 	.rings {
 		width: 400px;
