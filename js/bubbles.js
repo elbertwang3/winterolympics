@@ -284,6 +284,7 @@ var scrollVis = function(medals, countries, games) {
 	    activateFunctions[5] = showParticipants;
 	    activateFunctions[6] = showMenWomen;
 	    activateFunctions[7] = showSports;
+	    activateFunctions[8] = showEvents;
 	    //activateFunctions[8] = 
 	   
 	    
@@ -361,7 +362,7 @@ var scrollVis = function(medals, countries, games) {
 
 			ytick = yticks.enter().append("g")
 				.attr("class", 'ytick-g')
-				.merge(yticks)
+				.merge(ytick)
 			
 			ytick.select("line")
 				.attr("x1", linemargin.left)
@@ -370,7 +371,7 @@ var scrollVis = function(medals, countries, games) {
 				.attr("y2", function(d) { return countriesScale(d); })
 	      
 			ytick.select("text")
-				.text(function(d) { console.log(d); return d; })
+				.text(function(d) { return d; })
 				.attr("x", width-linemargin.right + 10)
 				.attr("y", function(d) { return countriesScale(d); })
 
@@ -427,9 +428,9 @@ var scrollVis = function(medals, countries, games) {
 		
 		yticks.exit().remove()
 
-		yticks = yticks.enter().append("g")
+		ytick = yticks.enter().append("g")
 			.attr("class", 'ytick-g')
-			.merge(yticks)
+			.merge(ytick)
 		
 		ytick.select("line")
 			.attr("x1", linemargin.left)
@@ -463,8 +464,9 @@ var scrollVis = function(medals, countries, games) {
 	}
 
 	function showMenWomen() {
+		console.log("show men women")
 		if (lastIndex >= 7) {
-	    	yticks = lineg.selectAll(".ytick-g").data(_.range(300, 3300, 300))
+	    	yticks = yticksg.selectAll(".ytick-g").data(_.range(300, 3300, 300))
 			
 			console.log(yticks);
 			yticks.exit().remove()
@@ -472,7 +474,7 @@ var scrollVis = function(medals, countries, games) {
 	
 			ytick = yticks.enter().append("g")	
 				.attr("class", 'ytick-g')
-				.merge(ytick);
+				.merge(yticks);
 				
 			ytick.append("line")
 				.attr("class", "ytick-line")
@@ -536,7 +538,8 @@ var scrollVis = function(medals, countries, games) {
 	}
 
 	function showSports() {
-		if (lastIndex >= 7) {
+		console.log("show sports")
+		if (lastIndex >= 8) {
 			/*lineg.selectAll(".layer").select(".area")
 	    		.attr("opacity", 0);*/
 		} else {
@@ -544,8 +547,7 @@ var scrollVis = function(medals, countries, games) {
 	        	.attr("width", 0);
 
 		}
-		console.log(yticks);
-		yticks = lineg.selectAll(".ytick-g").data(_.range(3, 18, 3))
+		yticks = yticksg.selectAll(".ytick-g").data(_.range(3, 18, 3))
 		console.log(yticks);
 		yticks.exit().remove()
 
@@ -588,21 +590,35 @@ var scrollVis = function(medals, countries, games) {
 	}
 
 	function showEvents() {
-
-		yticks = lineg.selectAll(".ytick-g").data(_.range(10, 110, 10))
+		if (lastIndex >= 9) {
+			/*lineg.selectAll(".layer").select(".area")
+	    		.attr("opacity", 0);*/
+		} else {
 		
+
+		}
+		yticks = yticksg.selectAll(".ytick-g").data(_.range(10, 105, 10))
+		
+		console.log(yticks);
 		yticks.exit().remove()
 
-		yticks = yticks.enter().append("g")
-			.merge(yticks)
-		
-		yticks.select("line")
+		ytick = yticks.enter().append("g")	
+			.attr("class", 'ytick-g')
+			.merge(ytick);
+			
+		ytick.append("line")
+			.attr("class", "ytick-line")
+
+		ytick.append("text")
+			.attr("class", "ytick-text")
+
+		ytick.select(".ytick-line")
 			.attr("x1", linemargin.left)
 			.attr("x2", width-linemargin.right)
 			.attr("y1", function(d) { return eventScale(d); })
 			.attr("y2", function(d) { return eventScale(d); })
-      
-		yticks.select("text")
+
+		ytick.select(".ytick-text")
 			.text(function(d) { return d; })
 			.attr("x", width-linemargin.right + 10)
 			.attr("y", function(d) { return eventScale(d); })
