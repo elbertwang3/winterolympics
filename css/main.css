@@ -298,6 +298,17 @@ body {
 	stroke: #2f2d53;
 }
 
+.annotation-note-label {
+	font-family: "Roboto";
+	font-size: 14px;
+}
+
+.annotation-note-title {
+	font-family: "Roboto";
+	font-weight: 900;
+	font-size: 14px;
+
+}
 @media only screen and (max-width: 600px) { 
 	.rings {
 		width: 400px;
@@ -308,6 +319,12 @@ body {
 	.title p{
 		font-size: 24px;
 	}
+
+	.annotation-note-title {
+
+		font-size: 10px;
+
+}
 
 	
 

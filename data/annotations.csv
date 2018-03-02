@@ -1,0 +1,29 @@
+year,annotation,class,dx,dy,align
+1924,"Sixteen nations participated in the first Winter Games held in Chamonix, France: fourteen from Europe and two from N. America",countries,0,-0.566,left
+1928,"Argentina is the first nation from the Southern Hemisphere to participate, and Japan the first Asian nation",countries,0,-0.34833,left
+1932,"Due to the Great Depression, participation dips",countries,0,-0.29,left
+1948,"Germany and Japan were not invited due to their roles in WW2",countries,0,0.07256894,middle
+1956,"The Soviet Union makes its debut in the Winter Games",countries,0,-0.058,right
+1960,"South Africa is first African nation to participate in the Winter Games",countries,0,-0.5,middle
+1968,"East and West Germany compete as independent teams due to the Cold War",countries,0,0.1,middle
+1972,"The Winter Games are hosted by an Asian country for the first time in Nagano, Japan",countries,0,-0.18,middle
+1988,"IOC votes to hold the Olympic Winter Games halfway through the four-year Olympiad",countries,0,0.1,left
+1994,"The former Soviet Republicans compete as independent nations for the first time",countries,0,-0.15,middle
+2018,"This year, five countries from warmer climates Ecuador, Eritrea, Malaysia, Nigeria and Singapore participate in winter games",countries,0,0.2,right
+1924,"Women only competed in figure skating",menwomen,0,-100,left
+1936,"Women competed in the alpine skiing event for the first time",menwomen,0,-100,left
+1948,"Women competed in downhill and slalom",menwomen,0,-100,left
+1952,"Women compete in cross countries skiing",menwomen,0,-100,left
+1960,"Women compete in speed skating",menwomen,0,-100,left
+1968,"Women compete in luge",menwomen,0,-100,left
+1992,"IOC made it mandatory for all new sports applying for Olympic recognition to have female competitors However, this rule only applied to new sports applying for Olympic recognition.",menwomen,0,-100,left
+1998,"Women compete in curling and ice hockey",menwomen,0,-100,left
+1992,'Women compete in biathlon',menwomen,0,-100,left
+2014,'Women compete in freestyle ski jumping',menwomen,0,-100,left
+1924,"First olympics has figure skating, speed skating, hockey, curling, cross country skiing, ski jumping, nordic combined, and bobsleigh",sports,0,-100,left
+1936,"Alpine skiing debuts",sports,0,-100,left
+1928,Skeleton debuts,sports,0,-100,left
+1960,"Biathlon debuts (previously called military patrol)",sports,0,-100,left
+1964,luge debuts,sports,0,-100,left
+1992,"Freestyle skiing short ,track speed skating debut",sports,0,-100,left
+1998,"Curling comes back, snowboarding debuts",sports,0,-100,left

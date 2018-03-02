@@ -1,5 +1,6 @@
-var scrollVis = function(medals, countries, games) {
-	
+var scrollVis = function(medals, countries, games, annotations) {
+	console.log(window.innerWidth);
+	console.log(window.innerHeight);
 	viz = d3.select("#vis"),
   	width = window.innerWidth,
   	height = window.innerHeight;
@@ -28,6 +29,9 @@ var scrollVis = function(medals, countries, games) {
         .translate( [width / 2, height / 1.5]);
 
     var yearParser = d3.timeParse("%Y");
+    var yearFormatter = d3.timeFormat("%Y");
+    var yScale;
+    var cut;
 
    
    
@@ -36,13 +40,13 @@ var scrollVis = function(medals, countries, games) {
 
 
 	var mainline = d3.line()
-		.curve(d3.curveBasis);
+		//.curve(d3.curveBasis);
 	var menline = d3.line()
-		.curve(d3.curveBasis);
+		//.curve(d3.curveBasis);
 	var womenline = d3.line()
-		.curve(d3.curveBasis);
+		//.curve(d3.curveBasis);
 	var area = d3.area()
-		.curve(d3.curveBasis);
+		//.curve(d3.curveBasis);
 
 
 	var stack = d3.stack();
@@ -67,14 +71,14 @@ var scrollVis = function(medals, countries, games) {
     .range(['#FFD700', "#C0C0C0", "#CD7F32"])*/
   	var chart = function (selection) {
       	selection.each(function (rawData) {
-        	setupVis(medals, countries, games);
+        	setupVis(medals, countries, games, annotations);
         	setupSections();
       	})
     }
 
-    var setupVis = function(medals, countries, games) {
+    var setupVis = function(medals, countries, games, annotations) {
  
-    
+    	console.log(annotations);
   		mapg = map.append("g")
       		.attr("class", "countries")
     		.selectAll("path")
@@ -164,6 +168,29 @@ var scrollVis = function(medals, countries, games) {
       		.range([height-linemargin.bottom, linemargin.top])
 
       	games = games.filter(function(d) { return d['year'] != "2022"; })
+      	gamesdict = games.reduce(function(map, obj) { 
+      		map[obj.year] = obj; 
+      		return map;
+      	}, {})
+
+      	console.log(gamesdict);
+      	console.log(annotations);
+      	annotations = annotations.map(function(d) { 
+      		console.log(d['align'])
+      		e = {};
+      		e['data'] = d;
+      		e['dx'] = d.dx;
+      		e['dy'] = d.dy;
+      		e['note'] = {'align': d['align']};
+      		return e;
+      	})
+      	.map(function(l) {
+	        l.note = Object.assign({}, l.note, { title: `${l.data.year}`,
+	          label: `${l.data.annotation}`, wrap: 200})
+	        l.subject = { radius: 4}
+
+	        return l;
+      	});
       	years = games.map(function(d) { return yearParser(d['year'])});
 		lineg.append("g")
 			.attr("class", "year-axis")
@@ -208,13 +235,6 @@ var scrollVis = function(medals, countries, games) {
 	      	.attr("class", "line mainline")
 	      	.attr("d", mainline);
 
-		menline
-		    .x(function(d) { return yearScale(yearParser(d['year'])); })
-		    .y(function(d) { return participantScale(d['men']); });
-
-	    womenline
-		    .x(function(d) { return yearScale(yearParser(d['year'])); })
-		    .y(function(d) { return participantScale(d['women']); });
 
 	    area
 		    .x(function(d) { return yearScale(yearParser(d.data['year'])); })
@@ -247,8 +267,54 @@ var scrollVis = function(medals, countries, games) {
 
 
 
+		countrieslabels = annotations.filter(function(d) { return d.data['class'] == 'countries'; })
+		menwomenlabels = annotations.filter(function(d) { return d.data['class'] == 'menwomen'; })
+		sportslabels = annotations.filter(function(d) { return d.data['class'] == 'sports'; })
+		yScale = countriesScale;
+		cut = "countriesparticipating";
+		window.countryAnnotations =  d3.annotation()
+	        .annotations(countrieslabels)
+	        .type(d3.annotationCalloutCircle)
+	        .accessors({ x: function x(d) {
+
+					return yearScale(yearParser(d.year))
+				}, 
+	          	y: function y(d) {	
+	          		return yScale(gamesdict[d['year']][cut])
+	        	}
+	    	})
+	    	.accessorsInverse({
+			    year: function year(d) {
+			      return yearFormatter(yearScale.invert(d.x));
+			    },
+			    countries: function freq(d) {
+			      return yScale.invert(d.y);
+			    }
+			})
+	    
+		yScale = countriesScale;
+		cut = "countriesparticipating";
+		annotationsg = lineg.append("g")
+			.attr("class", "annotations")
+			.call(countryAnnotations)
+			//.call()
+		/*
+		annotationsg.call(makeAnnotations, countrieslabels);
+		yScale = participantScale;
+		cut = "participants";
+		annotationsg.call(makeAnnotations, menwomenlabels);
+		yScale = sportScale;
+		cut = "sports"
+		annotationsg.call(makeAnnotations, sportslabels);*/
+
+		
+        
+    	
 
 
+
+
+		
 
 
 
@@ -398,6 +464,10 @@ var scrollVis = function(medals, countries, games) {
 	    	.attr("opacity", 1)
 
 
+	    yScale = countriesScale;
+	    cut = "countriesparticipating";
+	    
+
 	    totalLength = mainpath.node().getTotalLength();
 	    mainpath
 	    	.attr("stroke-dasharray", totalLength + " " + totalLength)
@@ -450,6 +520,11 @@ var scrollVis = function(medals, countries, games) {
 		mainpath
 	      	.attr("d", mainline);
 
+
+
+	    yScale = participantScale;
+	    cut = "participants";
+
 	    totalLength = mainpath.node().getTotalLength();
 
 		mainpath
@@ -492,6 +567,9 @@ var scrollVis = function(medals, countries, games) {
 				.text(function(d) { return d; })
 				.attr("x", width-linemargin.right + 10)
 				.attr("y", function(d) { return participantScale(d); })
+
+			yScale = participantScale;
+			cut = "participants";
 
 			/*yticks
 
@@ -575,6 +653,9 @@ var scrollVis = function(medals, countries, games) {
 			.attr("opacity", 1)
 	      	.attr("d", mainline);
 
+	    yScale = sportScale;
+	    cut = "sports";
+
 	    totalLength = mainpath.node().getTotalLength();
 
 		mainpath
@@ -630,6 +711,10 @@ var scrollVis = function(medals, countries, games) {
 		mainpath
 	      	.attr("d", mainline);
 
+
+	    yScale = eventScale;
+	    cut = "events";
+
 	    totalLength = mainpath.node().getTotalLength();
 
 		mainpath
@@ -672,6 +757,20 @@ var scrollVis = function(medals, countries, games) {
       
 
    	}
+
+   	/*var makeAnnotations = function() {
+   		console.log(labels);
+   		return d3.annotation()
+        .annotations(labels)
+        .type(d3.annotationCalloutCircle)
+        .accessors({ x: d => yearScale(yearParser(d.year)), 
+          y: d => yScale(d[cut])
+        })
+        .accessorsInverse({
+          date: d => timeFormat(x.invert(d.x)),
+          close: d => y.invert(d.y) 
+        })
+    }*/
 	function reset() {
 		map
 			.transition()
@@ -715,13 +814,14 @@ d3.queue()
     .defer(d3.csv, "data/medals.csv", type)
     .defer(d3.json, "data/world_countries.json")
     .defer(d3.csv, "data/gamescoded.csv", type2)
+    .defer(d3.csv, "data/annotations.csv", type3)
     .await(display);
 
-function display(error,medals, countries, games) {
-  	var plot = scrollVis(medals, countries, games);
+function display(error,medals, countries, games, annotations) {
+  	var plot = scrollVis(medals, countries, games, annotations);
 
     d3.select('#vis')
-      	.data([medals,countries, games])
+      	.data([medals,countries, games, annotations])
       	.call(plot);
 
      var scroll = scroller()
@@ -769,4 +869,10 @@ function type2(d) {
  	d['latitude'] = +d['latitude'];
  	d['longitude'] = +d['longitude'];
   	return d;
+}
+
+function type3(d) { 
+	d['dx'] = +d['dx'] * window.innerWidth;
+	d['dy'] = +d['dy'] * window.innerHeight;
+	return d
 }
