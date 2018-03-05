@@ -13,26 +13,42 @@ var topoffset;
 var bottomoffset;
 
 
- 
 
-  $(window).scroll(function() {
+$(window).scroll(function() {
 
-  	topoffset = $("#graphic").position().top
-  	 bottomoffset = $("#graphic").position().top + $("#sections").outerHeight(true);
+  	topoffset = $("#graphic1").position().top
+  	bottomoffset = $("#graphic1").position().top + $("#sections1").outerHeight(true);
 
   	if (window.pageYOffset >= topoffset && window.pageYOffset <= bottomoffset - window.innerHeight) {
-	
-	  	d3.select("#vis").classed("is_fixed", true)
-	  	d3.select("#vis").classed("is_unfixed", false)
-	  	d3.select("#vis").classed("is_bottom", false)
+	  	d3.select("#vis1").classed("is_fixed", true)
+	  	d3.select("#vis1").classed("is_unfixed", false)
+	  	d3.select("#vis1").classed("is_bottom", false)
 	  	
-	  } else if (window.pageYOffset > bottomoffset - window.innerHeight) {
-	  		d3.select("#vis").classed("is_fixed", false)
-	  		d3.select("#vis").classed("is_bottom", true)
-	  	}
-	  	else {
+	} else if (window.pageYOffset > bottomoffset - window.innerHeight) {
+	  		d3.select("#vis1").classed("is_fixed", false)
+	  		d3.select("#vis1").classed("is_bottom", true)
+	}
+	else {
+	  	console.log("GETTING unfixed")
+	  	d3.select("#vis1").classed("is_fixed", false)
+	  	d3.select("#vis1").classed("is_unfixed", true)
+	}
+
+	/*topoffset2 = $("#graphic2").position().top
+  	bottomoffset2 = $("#graphic2").position().top + $("#sections2").outerHeight(true);
+
+  	if (window.pageYOffset >= topoffset2 && window.pageYOffset <= bottomoffset2 - window.innerHeight) {
+  		console.log("second one is getting fixed");
+	  	d3.select("#vis2").classed("is_fixed", true)
+	  	d3.select("#vis2").classed("is_unfixed", false)
+	  	d3.select("#vis2").classed("is_bottom", false)
+	  	
+	} else if (window.pageYOffset > bottomoffset2 - window.innerHeight) {
+	  		d3.select("#vis2").classed("is_fixed", false)
+	  		d3.select("#vis2").classed("is_bottom", true)
+	} else {
 	  	//console.log("GETTING unfixed")
-	  	d3.select("#vis").classed("is_fixed", false)
-	  	d3.select("#vis").classed("is_unfixed", true)
-	  }
-  })
+	  	d3.select("#vis2").classed("is_fixed", false)
+	  	d3.select("#vis2").classed("is_unfixed", true)
+	}*/
+})

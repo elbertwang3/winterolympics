@@ -108,12 +108,12 @@ body {
 }
 
 
-#sections .step:first-child {
+.sections .step:first-child {
 
 
 }
 
-#sections .step {
+.sections .step {
 	 margin-bottom: 500px;
 	 padding: 1rem;
 	 display: block;
@@ -125,7 +125,7 @@ body {
 
 }
 
-#vis {
+.vis {
 
 	  left: 0;
 
@@ -135,26 +135,37 @@ body {
 	max-width: 1440px;
 
 }
+
+
 	
 
 
-#graphic {
+.graphic {
 	position: relative;
 	clear: both;
 	content: "";
 
 }
-#sections {
-	left: 0;
+
+
+#graphic1 {
+	height: 6556.31px;
+}
+#sections1 {
 	position: absolute;
-  top: 0px;
-  z-index: 90;
-  width: 100%;
-  clear: both;
-  pointer-events: none;
+	top: 0px;
+	left: 0px;
+  	z-index: 90;
+  	width: 100%;
+  	clear: both;
+  	pointer-events: none;
 
 }
 
+.sticktotop {
+	
+
+}
 
 
 .bubbles {
@@ -197,11 +208,37 @@ body {
 	font-weight: 900;
 	color: #53412d;
 }
+.stepp h2 {
+	font-family: "Merriweather";
+	font-size: 24px;
+	text-align: center;
+	font-weight: 900;
+
+}
+
+.stepp .prose {
+
+	text-align: left;
+	font-family: "Merriweather";
+	font-size: 16;
+	line-height: 1.8;
+	padding: 1rem;
+}
+
+.stepp {
+	 padding: 1rem;
+	 display: block;
+	 margin-right: auto;
+	 margin-left: auto;
+	 max-width: 500px;
+	 pointer-events: none;
+}
+
 .step:last-child {
 	margin-bottom: 200px;
 }
 
-#sections .step:first-child {
+.sections .step:first-child {
 	margin-top: 200px;
 }
 
@@ -301,13 +338,25 @@ body {
 .annotation-note-label {
 	font-family: "Roboto";
 	font-size: 14px;
+	fill: black;
 }
 
 .annotation-note-title {
 	font-family: "Roboto";
 	font-weight: 900;
 	font-size: 14px;
+	fill: #ff3814;
 
+}
+
+.annotation.callout.circle path {
+	stroke: black;
+
+}
+
+#smallmultiples {
+	max-width: 1440px;
+	margin: 0 auto;
 }
 @media only screen and (max-width: 600px) { 
 	.rings {
@@ -324,7 +373,11 @@ body {
 
 		font-size: 10px;
 
-}
+	}
+
+	.annotation-note-label {
+		font-size: 10px;
+	}
 
 	
 
