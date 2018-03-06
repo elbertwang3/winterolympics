@@ -57,7 +57,6 @@ function display(error,medals, hosts) {
   
 
 	years2 = ["1950", "1975", "2000"].map(function(d) { return yearParser(d)});
-	console.log(years);
 	smsvg.append("g")
 			.attr("class", "year-axis")
 		     .attr("transform", "translate(0," + (smmargin.top) + ")")
@@ -82,24 +81,33 @@ function display(error,medals, hosts) {
       		return e;
       	})
       	.map(function(l) {
-      		annotation = l.data.city + " hosted in " + l.data.country + " in " + l.data.year
+      		annotation = l.data.country + " hosted in " + l.data.city + " in " + l.data.year
 	        l.note = Object.assign({}, l.note, {
 	          label: annotation, wrap: 200})
 	        l.subject = { radius: 4}
 
 	        return l;
       	});
-     console.log(hosts);
-	window.hostAnnotations =  d3.annotation()
-	        .annotations(hosts)
+
+    console.log(d3.selectAll(".small-multiple"));
+    d3.selectAll(".small-multiple")
+    	.each(function(d) { 
+    		console.log(d);
+    		//console.log(d['key'])
+    		//console.log(hosts);
+    		data = d;
+    		var filteredlabels = hosts.filter(host => host.data['country'] == d['key'])
+    		//console.log(filteredlabels);
+    		var hostAnnotations =  d3.annotation()
+	        .annotations(filteredlabels)
 	        .type(d3.annotationLabel)
 	        .accessors({ x: function x(d) {
-	        	console.log(d);
-	        		console.log(yearScale2(yearParser(d['year'])))
+	        	console.log(d['year'])
 					return yearScale2(yearParser(d['year']))
 				}, 
 	          	y: function y(d) {	
-	          		return 300;
+	          		return smmargin.top + 6 + 8 * data.values.findIndex(item => item.key === d['year']);
+	          		//return groupByCountry.findIndex(item => item.key === 'John');;
 	        	}
 	    	})
 	    	.accessorsInverse({
@@ -110,9 +118,12 @@ function display(error,medals, hosts) {
 			      return yScale.invert(d.y);
 			    }
 			})
-	smsvg.append("g")
+			d3.select(this)
+				.append("g")
 				.attr("class", "annotations")
 				.call(hostAnnotations)
+    		return d;
+    	})
 
 	yearbars = smsvg.append("g")
 		.attr("class", "sm-medals")
@@ -136,7 +147,6 @@ function display(error,medals, hosts) {
 		})
 		.attr("class", "sm-medal")
 		.on("mouseover", function(d) { 
-			console.log(d);
 			data = d
 			mouseOverEvents(d,d3.select(this));
 		})
@@ -182,7 +192,7 @@ function display(error,medals, hosts) {
 			.data(function(d) { return d})
 			.enter()
 			.append("div")
-			.text(function(d) { console.log(d); return d;})
+			.text(function(d) { return d;})
 			.attr("class", function(d,i) { 
 				if (i % 2 == 0) {
 					return "column-left";

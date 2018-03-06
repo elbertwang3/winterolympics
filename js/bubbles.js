@@ -196,7 +196,6 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        return l;
       	});
       	years = games.map(function(d) { return yearParser(d['year'])});
-      	console.log(years);
 		lineg.append("g")
 			.attr("class", "year-axis")
 		    .attr("transform", "translate(0," + (height - linemargin.bottom) + ")")
@@ -309,12 +308,12 @@ var scrollVis = function(medals, countries, games, annotations) {
 
 
 
-      	var chart = $(".svg"),
-	   	aspect = chart.width() / chart.height(),
-	    parentcontainer = $("#sections");
+      	
 		$(window).on("resize", function() {
 			
-      	
+      		var chart = $(".svg"),
+		   	aspect = chart.width() / chart.height(),
+		    parentcontainer = $("#sections");
 	
 		    var targetWidth = parentcontainer.width();
 		    chart.attr("width", targetWidth);

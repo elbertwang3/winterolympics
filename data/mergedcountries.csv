@@ -373,7 +373,7 @@
 1956,Ice Hockey,Men's Ice Hockey,Canada,Men,3,bronze,Canada,
 1956,Nordic Combined,Men's Individual,Norway,Men,1,gold,Sverre Stenersen,29
 1956,Nordic Combined,Men's Individual,Sweden,Men,2,silver,Bengt Eriksson,25
-1956,Nordic Combined,Men's Individual,Poland,Men,3,bronze,Franciszek GÄ…sienica GroÅ„,24
+1956,Nordic Combined,Men's Individual,Poland,Men,3,bronze,Franciszek Gąsienica Groń,24
 1956,Ski Jumping,"Men's Normal Hill, Individual",Finland,Men,1,gold,Antti Hyvärinen,23
 1956,Ski Jumping,"Men's Normal Hill, Individual",Finland,Men,2,silver,Aulis Kallakorpi,27
 1956,Ski Jumping,"Men's Normal Hill, Individual",Germany,Men,3,bronze,Harry Glaß,25
@@ -465,7 +465,7 @@
 1960,Speedskating,"Women's 1,000 Meters",Germany,Women,2,silver,Helga Haase,25
 1960,Speedskating,"Women's 1,000 Meters",Russia,Women,3,bronze,Tamara Rylova,28
 1960,Speedskating,"Women's 1,500 Meters",Russia,Women,1,gold,Lidiya Skoblikova,20
-1960,Speedskating,"Women's 1,500 Meters",Poland,Women,2,silver,Elwira SeroczyÅ„ska,28
+1960,Speedskating,"Women's 1,500 Meters",Poland,Women,2,silver,Elwira Seroczyńska,28
 1960,Speedskating,"Women's 1,500 Meters",Poland,Women,3,bronze,Helena Pilejczyk,28
 1960,Speedskating,"Women's 3,000 Meters",Russia,Women,1,gold,Lidiya Skoblikova,20
 1960,Speedskating,"Women's 3,000 Meters",Russia,Women,2,silver,Valentina Stenina,25
@@ -631,7 +631,7 @@
 1968,Figure Skating,Mixed Pairs,Germany,Mixed,3,bronze,West Germany-1,
 1968,Figure Skating,Women's Singles,United States,Women,1,gold,Peggy Fleming,19
 1968,Figure Skating,Women's Singles,Germany,Women,2,silver,Gabriele Seyfert,19
-1968,Figure Skating,Women's Singles,Czech Republic,Women,3,bronze,Hana MaÅ¡ková,18
+1968,Figure Skating,Women's Singles,Czech Republic,Women,3,bronze,Hana Mašková,18
 1968,Ice Hockey,Men's Ice Hockey,Russia,Men,1,gold,Soviet Union,
 1968,Ice Hockey,Men's Ice Hockey,Czech Republic,Men,2,silver,Czechoslovakia,
 1968,Ice Hockey,Men's Ice Hockey,Canada,Men,3,bronze,Canada,
@@ -647,11 +647,11 @@
 1968,Nordic Combined,Men's Individual,Germany,Men,1,gold,Franz Keller,23
 1968,Nordic Combined,Men's Individual,Switzerland,Men,2,silver,Alois Kälin,28
 1968,Nordic Combined,Men's Individual,Germany,Men,3,bronze,Andreas Kunz,21
-1968,Ski Jumping,"Men's Normal Hill, Individual",Czech Republic,Men,1,gold,JiÅ™í RaÅ¡ka,27
+1968,Ski Jumping,"Men's Normal Hill, Individual",Czech Republic,Men,1,gold,Jiří Raška,27
 1968,Ski Jumping,"Men's Normal Hill, Individual",Austria,Men,2,silver,Reinhold Bachler,23
 1968,Ski Jumping,"Men's Normal Hill, Individual",Austria,Men,3,bronze,Baldur Preiml,28
 1968,Ski Jumping,"Men's Large Hill, Individual",Russia,Men,1,gold,Vladimir Belousov,21
-1968,Ski Jumping,"Men's Large Hill, Individual",Czech Republic,Men,2,silver,JiÅ™í RaÅ¡ka,27
+1968,Ski Jumping,"Men's Large Hill, Individual",Czech Republic,Men,2,silver,Jiří Raška,27
 1968,Ski Jumping,"Men's Large Hill, Individual",Norway,Men,3,bronze,Lars Grini,23
 1968,Speedskating,Men's 500 Meters,Germany,Men,1,gold,Erhard Keller,23
 1968,Speedskating,Men's 500 Meters,United States,Men,2,silver,Terry McDermott,27
@@ -722,7 +722,7 @@
 1972,Cross-Country Skiing,Men's 4 × 10-Kilometer Relay,Switzerland,Men,3,bronze,Switzerland,
 1972,Cross-Country Skiing,Women's 5 Kilometers,Russia,Women,1,gold,Galina Kulakova,29
 1972,Cross-Country Skiing,Women's 5 Kilometers,Finland,Women,2,silver,Marjatta Kajosmaa,34
-1972,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,3,bronze,Helena Å ikolová,22
+1972,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,3,bronze,Helena Šikolová,22
 1972,Cross-Country Skiing,Women's 10 Kilometers,Russia,Women,1,gold,Galina Kulakova,29
 1972,Cross-Country Skiing,Women's 10 Kilometers,Russia,Women,2,silver,Alevtina Olyunina-Smirnova,29
 1972,Cross-Country Skiing,Women's 10 Kilometers,Finland,Women,3,bronze,Marjatta Kajosmaa,34
@@ -941,7 +941,7 @@
 1980,Cross-Country Skiing,Men's 4 × 10-Kilometer Relay,Finland,Men,3,bronze,Finland,
 1980,Cross-Country Skiing,Women's 5 Kilometers,Russia,Women,1,gold,Raisa Smetanina,27
 1980,Cross-Country Skiing,Women's 5 Kilometers,Finland,Women,2,silver,Hilkka Riihivuori-Kuntola,27
-1980,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,3,bronze,KvÄ›ta Jeriová,23
+1980,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,3,bronze,Květa Jeriová,23
 1980,Cross-Country Skiing,Women's 10 Kilometers,Germany,Women,1,gold,Barbara Petzold,24
 1980,Cross-Country Skiing,Women's 10 Kilometers,Finland,Women,2,silver,Hilkka Riihivuori-Kuntola,27
 1980,Cross-Country Skiing,Women's 10 Kilometers,Finland,Women,3,bronze,Helena Kivioja-Takalo,32
@@ -969,9 +969,9 @@
 1980,Luge,Men's Doubles,Germany,Men,1,gold,East Germany-1,
 1980,Luge,Men's Doubles,Italy,Men,2,silver,Italy-1,
 1980,Luge,Men's Doubles,Austria,Men,3,bronze,Austria-1,
-1980,Luge,Women's Singles,Russia,Women,1,gold,Vera ZozuÄ¼a,24
+1980,Luge,Women's Singles,Russia,Women,1,gold,Vera Zozuļa,24
 1980,Luge,Women's Singles,Germany,Women,2,silver,Melitta Sollmann,21
-1980,Luge,Women's Singles,Russia,Women,3,bronze,IngrÄ«da Amantova,19
+1980,Luge,Women's Singles,Russia,Women,3,bronze,Ingrīda Amantova,19
 1980,Nordic Combined,Men's Individual,Germany,Men,1,gold,Ulrich Wehling,27
 1980,Nordic Combined,Men's Individual,Finland,Men,2,silver,Jouko Karjalainen,23
 1980,Nordic Combined,Men's Individual,Germany,Men,3,bronze,Konrad Winkler,24
@@ -1056,7 +1056,7 @@
 1984,Cross-Country Skiing,Men's 4 × 10-Kilometer Relay,Finland,Men,3,bronze,Finland,
 1984,Cross-Country Skiing,Women's 5 Kilometers,Finland,Women,1,gold,Marja-Liisa Kirvesniemi-Hämäläinen,28
 1984,Cross-Country Skiing,Women's 5 Kilometers,Norway,Women,2,silver,Berit Aunli-Kvello,27
-1984,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,3,bronze,KvÄ›ta Jeriová,27
+1984,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,3,bronze,Květa Jeriová,27
 1984,Cross-Country Skiing,Women's 10 Kilometers,Finland,Women,1,gold,Marja-Liisa Kirvesniemi-Hämäläinen,28
 1984,Cross-Country Skiing,Women's 10 Kilometers,Russia,Women,2,silver,Raisa Smetanina,31
 1984,Cross-Country Skiing,Women's 10 Kilometers,Norway,Women,3,bronze,Brit Pettersen,22
@@ -1068,7 +1068,7 @@
 1984,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Finland,Women,3,bronze,Finland,
 1984,Figure Skating,Men's Singles,United States,Men,1,gold,Scott Hamilton,25
 1984,Figure Skating,Men's Singles,Canada,Men,2,silver,Brian Orser,22
-1984,Figure Skating,Men's Singles,Czech Republic,Men,3,bronze,Jozef SabovÄík,20
+1984,Figure Skating,Men's Singles,Czech Republic,Men,3,bronze,Jozef Sabovčík,20
 1984,Figure Skating,Mixed Pairs,Russia,Mixed,1,gold,Soviet Union-1,
 1984,Figure Skating,Mixed Pairs,United States,Mixed,2,silver,United States-1,
 1984,Figure Skating,Mixed Pairs,Russia,Mixed,3,bronze,Soviet Union-2,
@@ -1227,10 +1227,10 @@
 1988,Nordic Combined,Men's Individual,Russia,Men,3,bronze,Allar Levandi,22
 1988,Ski Jumping,"Men's Normal Hill, Individual",Finland,Men,1,gold,Matti Nykänen,24
 1988,Ski Jumping,"Men's Normal Hill, Individual",Czech Republic,Men,2,silver,Pavel Ploc,23
-1988,Ski Jumping,"Men's Normal Hill, Individual",Czech Republic,Men,3,bronze,JiÅ™í Malec,25
+1988,Ski Jumping,"Men's Normal Hill, Individual",Czech Republic,Men,3,bronze,Jiří Malec,25
 1988,Ski Jumping,"Men's Large Hill, Individual",Finland,Men,1,gold,Matti Nykänen,24
 1988,Ski Jumping,"Men's Large Hill, Individual",Norway,Men,2,silver,Erik Johnsen,22
-1988,Ski Jumping,"Men's Large Hill, Individual",Serbia,Men,3,bronze,MatjaÅ¾ Debelak,22
+1988,Ski Jumping,"Men's Large Hill, Individual",Serbia,Men,3,bronze,Matjaž  Debelak,22
 1988,Ski Jumping,"Men's Large Hill, Team",Finland,Men,1,gold,Finland,
 1988,Ski Jumping,"Men's Large Hill, Team",Serbia,Men,2,silver,Yugoslavia,
 1988,Ski Jumping,"Men's Large Hill, Team",Norway,Men,3,bronze,Norway,
@@ -1446,7 +1446,7 @@
 1994,Alpine Skiing,Men's Giant Slalom,Austria,Men,3,bronze,Christian Mayer,22
 1994,Alpine Skiing,Men's Slalom,Austria,Men,1,gold,Thomas Stangassinger,28
 1994,Alpine Skiing,Men's Slalom,Italy,Men,2,silver,Alberto Tomba,27
-1994,Alpine Skiing,Men's Slalom,Slovenia,Men,3,bronze,Jure KoÅ¡ir,21
+1994,Alpine Skiing,Men's Slalom,Slovenia,Men,3,bronze,Jure Košir,21
 1994,Alpine Skiing,Men's Combined,Norway,Men,1,gold,Lasse Kjus,23
 1994,Alpine Skiing,Men's Combined,Norway,Men,2,silver,Kjetil André Aamodt,22
 1994,Alpine Skiing,Men's Combined,Norway,Men,3,bronze,Harald Christian Strand Nilsen,22
@@ -1464,7 +1464,7 @@
 1994,Alpine Skiing,Women's Slalom,Slovenia,Women,3,bronze,Katja Koren,18
 1994,Alpine Skiing,Women's Combined,Sweden,Women,1,gold,Pernilla Wiberg,23
 1994,Alpine Skiing,Women's Combined,Switzerland,Women,2,silver,Vreni Schneider,29
-1994,Alpine Skiing,Women's Combined,Slovenia,Women,3,bronze,Alenka DovÅ¾an,18
+1994,Alpine Skiing,Women's Combined,Slovenia,Women,3,bronze,Alenka Dovž an,18
 1994,Biathlon,Men's 10-Kilometer Sprint,Russia,Men,1,gold,Sergey Chepikov,27
 1994,Biathlon,Men's 10-Kilometer Sprint,Germany,Men,2,silver,Ricco Groß,23
 1994,Biathlon,Men's 10-Kilometer Sprint,Russia,Men,3,bronze,Sergey Tarasov,28
@@ -1689,7 +1689,7 @@
 1998,Cross-Country Skiing,Men's 4 × 10-Kilometer Relay,Italy,Men,2,silver,Italy,
 1998,Cross-Country Skiing,Men's 4 × 10-Kilometer Relay,Finland,Men,3,bronze,Finland,
 1998,Cross-Country Skiing,Women's 5 Kilometers,Russia,Women,1,gold,Larisa Lazutina,32
-1998,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,2,silver,KateÅ™ina Neumannová,24
+1998,Cross-Country Skiing,Women's 5 Kilometers,Czech Republic,Women,2,silver,Kateřina Neumannová,24
 1998,Cross-Country Skiing,Women's 5 Kilometers,Norway,Women,3,bronze,Bente Skari-Martinsen,25
 1998,Cross-Country Skiing,Women's 15 Kilometers,Russia,Women,1,gold,Olga Danilova,27
 1998,Cross-Country Skiing,Women's 15 Kilometers,Russia,Women,2,silver,Larisa Lazutina,32
@@ -1699,7 +1699,7 @@
 1998,Cross-Country Skiing,Women's 30 Kilometers,Russia,Women,3,bronze,Larisa Lazutina,32
 1998,Cross-Country Skiing,Women's 5/10-Kilometer pursuit,Russia,Women,1,gold,Larisa Lazutina,32
 1998,Cross-Country Skiing,Women's 5/10-Kilometer pursuit,Russia,Women,2,silver,Olga Danilova,27
-1998,Cross-Country Skiing,Women's 5/10-Kilometer pursuit,Czech Republic,Women,3,bronze,KateÅ™ina Neumannová,24
+1998,Cross-Country Skiing,Women's 5/10-Kilometer pursuit,Czech Republic,Women,3,bronze,Kateřina Neumannová,24
 1998,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Russia,Women,1,gold,Russia,
 1998,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Norway,Women,2,silver,Norway,
 1998,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Italy,Women,3,bronze,Italy,
@@ -1842,15 +1842,15 @@
 2002,Alpine Skiing,Women's Downhill,Italy,Women,2,silver,Isolde Kostner,26
 2002,Alpine Skiing,Women's Downhill,Austria,Women,3,bronze,Renate Götschl,26
 2002,Alpine Skiing,Women's Super G,Italy,Women,1,gold,Daniela Ceccarelli,26
-2002,Alpine Skiing,Women's Super G,Croatia,Women,2,silver,Janica KosteliÄ‡,20
+2002,Alpine Skiing,Women's Super G,Croatia,Women,2,silver,Janica Kostelić,20
 2002,Alpine Skiing,Women's Super G,Italy,Women,3,bronze,Karen Putzer,23
-2002,Alpine Skiing,Women's Giant Slalom,Croatia,Women,1,gold,Janica KosteliÄ‡,20
+2002,Alpine Skiing,Women's Giant Slalom,Croatia,Women,1,gold,Janica Kostelić,20
 2002,Alpine Skiing,Women's Giant Slalom,Sweden,Women,2,silver,Anja Pärson,20
 2002,Alpine Skiing,Women's Giant Slalom,Switzerland,Women,3,bronze,Sonja Nef,29
-2002,Alpine Skiing,Women's Slalom,Croatia,Women,1,gold,Janica KosteliÄ‡,20
+2002,Alpine Skiing,Women's Slalom,Croatia,Women,1,gold,Janica Kostelić,20
 2002,Alpine Skiing,Women's Slalom,France,Women,2,silver,Laure Pequegnot,26
 2002,Alpine Skiing,Women's Slalom,Sweden,Women,3,bronze,Anja Pärson,20
-2002,Alpine Skiing,Women's Combined,Croatia,Women,1,gold,Janica KosteliÄ‡,20
+2002,Alpine Skiing,Women's Combined,Croatia,Women,1,gold,Janica Kostelić,20
 2002,Alpine Skiing,Women's Combined,Austria,Women,2,silver,Renate Götschl,26
 2002,Alpine Skiing,Women's Combined,Germany,Women,3,bronze,Martina Ertl-Renz,28
 2002,Biathlon,Men's 10-Kilometer Sprint,Norway,Men,1,gold,Ole Einar Bjørndalen,28
@@ -1911,13 +1911,13 @@
 2002,Cross-Country Skiing,Women's 10 Kilometers,Russia,Women,2,silver,Yuliya Chepalova,25
 2002,Cross-Country Skiing,Women's 10 Kilometers,Italy,Women,3,bronze,Stefania Belmondo,33
 2002,Cross-Country Skiing,Women's 15 Kilometers,Italy,Women,1,gold,Stefania Belmondo,33
-2002,Cross-Country Skiing,Women's 15 Kilometers,Czech Republic,Women,2,silver,KateÅ™ina Neumannová,28
+2002,Cross-Country Skiing,Women's 15 Kilometers,Czech Republic,Women,2,silver,Kateřina Neumannová,28
 2002,Cross-Country Skiing,Women's 15 Kilometers,Russia,Women,3,bronze,Yuliya Chepalova,25
 2002,Cross-Country Skiing,Women's 30 Kilometers,Italy,Women,1,gold,Gabriella Paruzzi,32
 2002,Cross-Country Skiing,Women's 30 Kilometers,Italy,Women,2,silver,Stefania Belmondo,33
 2002,Cross-Country Skiing,Women's 30 Kilometers,Norway,Women,3,bronze,Bente Skari-Martinsen,29
 2002,Cross-Country Skiing,Women's 5/5-Kilometer pursuit,Canada,Women,1,gold,Beckie Scott,27
-2002,Cross-Country Skiing,Women's 5/5-Kilometer pursuit,Czech Republic,Women,2,silver,KateÅ™ina Neumannová,28
+2002,Cross-Country Skiing,Women's 5/5-Kilometer pursuit,Czech Republic,Women,2,silver,Kateřina Neumannová,28
 2002,Cross-Country Skiing,Women's 5/5-Kilometer pursuit,Germany,Women,3,bronze,Viola Bauer,25
 2002,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Germany,Women,1,gold,Germany,
 2002,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Norway,Women,2,silver,Norway,
@@ -1943,7 +1943,7 @@
 2002,Freestyle Skiing,Men's Moguls,Finland,Men,1,gold,Janne Lahtela,27
 2002,Freestyle Skiing,Men's Moguls,United States,Men,2,silver,Travis Mayer,19
 2002,Freestyle Skiing,Men's Moguls,France,Men,3,bronze,Richard Gay,30
-2002,Freestyle Skiing,Men's Aerials,Czech Republic,Men,1,gold,AleÅ¡ Valenta,29
+2002,Freestyle Skiing,Men's Aerials,Czech Republic,Men,1,gold,Aleš Valenta,29
 2002,Freestyle Skiing,Men's Aerials,United States,Men,2,silver,Joe Pack,23
 2002,Freestyle Skiing,Men's Aerials,Belarus,Men,3,bronze,Aleksey Grishin,22
 2002,Freestyle Skiing,Women's Moguls,Norway,Women,1,gold,Kari Traa,28
@@ -2008,9 +2008,9 @@
 2002,Skeleton,Women's Skeleton,Britain,Women,3,bronze,Alex Coomber,28
 2002,Ski Jumping,"Men's Normal Hill, Individual",Switzerland,Men,1,gold,Simon Ammann,20
 2002,Ski Jumping,"Men's Normal Hill, Individual",Germany,Men,2,silver,Sven Hannawald,27
-2002,Ski Jumping,"Men's Normal Hill, Individual",Poland,Men,3,bronze,Adam MaÅ‚ysz,24
+2002,Ski Jumping,"Men's Normal Hill, Individual",Poland,Men,3,bronze,Adam Małysz,24
 2002,Ski Jumping,"Men's Large Hill, Individual",Switzerland,Men,1,gold,Simon Ammann,20
-2002,Ski Jumping,"Men's Large Hill, Individual",Poland,Men,2,silver,Adam MaÅ‚ysz,24
+2002,Ski Jumping,"Men's Large Hill, Individual",Poland,Men,2,silver,Adam Małysz,24
 2002,Ski Jumping,"Men's Large Hill, Individual",Finland,Men,3,bronze,Matti Hautamäki,20
 2002,Ski Jumping,"Men's Large Hill, Team",Germany,Men,1,gold,Germany,
 2002,Ski Jumping,"Men's Large Hill, Team",Finland,Men,2,silver,Finland,
@@ -2070,13 +2070,13 @@
 2006,Alpine Skiing,Men's Slalom,Austria,Men,2,silver,Reinfried Herbst,27
 2006,Alpine Skiing,Men's Slalom,Austria,Men,3,bronze,Rainer Schönfelder,28
 2006,Alpine Skiing,Men's Combined,United States,Men,1,gold,Ted Ligety,21
-2006,Alpine Skiing,Men's Combined,Croatia,Men,2,silver,Ivica KosteliÄ‡,26
+2006,Alpine Skiing,Men's Combined,Croatia,Men,2,silver,Ivica Kostelić,26
 2006,Alpine Skiing,Men's Combined,Austria,Men,3,bronze,Rainer Schönfelder,28
 2006,Alpine Skiing,Women's Downhill,Austria,Women,1,gold,Michaela Dorfmeister,32
 2006,Alpine Skiing,Women's Downhill,Switzerland,Women,2,silver,Martina Schild,24
 2006,Alpine Skiing,Women's Downhill,Sweden,Women,3,bronze,Anja Pärson,24
 2006,Alpine Skiing,Women's Super G,Austria,Women,1,gold,Michaela Dorfmeister,32
-2006,Alpine Skiing,Women's Super G,Croatia,Women,2,silver,Janica KosteliÄ‡,24
+2006,Alpine Skiing,Women's Super G,Croatia,Women,2,silver,Janica Kostelić,24
 2006,Alpine Skiing,Women's Super G,Austria,Women,3,bronze,Alexandra Meissnitzer,32
 2006,Alpine Skiing,Women's Giant Slalom,United States,Women,1,gold,Julia Mancuso,21
 2006,Alpine Skiing,Women's Giant Slalom,Finland,Women,2,silver,Tanja Poutiainen,25
@@ -2084,7 +2084,7 @@
 2006,Alpine Skiing,Women's Slalom,Sweden,Women,1,gold,Anja Pärson,24
 2006,Alpine Skiing,Women's Slalom,Austria,Women,2,silver,Nicole Hosp,22
 2006,Alpine Skiing,Women's Slalom,Austria,Women,3,bronze,Marlies Schild,24
-2006,Alpine Skiing,Women's Combined,Croatia,Women,1,gold,Janica KosteliÄ‡,24
+2006,Alpine Skiing,Women's Combined,Croatia,Women,1,gold,Janica Kostelić,24
 2006,Alpine Skiing,Women's Combined,Austria,Women,2,silver,Marlies Schild,24
 2006,Alpine Skiing,Women's Combined,Sweden,Women,3,bronze,Anja Pärson,24
 2006,Biathlon,Men's 10-Kilometer Sprint,Germany,Men,1,gold,Sven Fischer,34
@@ -2130,7 +2130,7 @@
 2006,Cross-Country Skiing,Men's Sprint,France,Men,2,silver,Roddy Darragon,22
 2006,Cross-Country Skiing,Men's Sprint,Sweden,Men,3,bronze,Thobias Fredriksson,30
 2006,Cross-Country Skiing,Men's 15 Kilometers,Estonia,Men,1,gold,Andrus Veerpalu,35
-2006,Cross-Country Skiing,Men's 15 Kilometers,Czech Republic,Men,2,silver,LukáÅ¡ Bauer,28
+2006,Cross-Country Skiing,Men's 15 Kilometers,Czech Republic,Men,2,silver,Lukáš Bauer,28
 2006,Cross-Country Skiing,Men's 15 Kilometers,Germany,Men,3,bronze,Tobias Angerer,28
 2006,Cross-Country Skiing,Men's 50 Kilometers,Italy,Men,1,gold,Giorgio Di Centa,33
 2006,Cross-Country Skiing,Men's 50 Kilometers,Russia,Men,2,silver,Yevgeny Dementyev,23
@@ -2147,14 +2147,14 @@
 2006,Cross-Country Skiing,Women's Sprint,Canada,Women,1,gold,Chandra Crawford,22
 2006,Cross-Country Skiing,Women's Sprint,Germany,Women,2,silver,Claudia Künzel-Nystad,28
 2006,Cross-Country Skiing,Women's Sprint,Russia,Women,3,bronze,Alyona Sidko,26
-2006,Cross-Country Skiing,Women's 10 Kilometers,Estonia,Women,1,gold,Kristina Å migun-Vähi,28
+2006,Cross-Country Skiing,Women's 10 Kilometers,Estonia,Women,1,gold,Kristina Šmigun-Vähi,28
 2006,Cross-Country Skiing,Women's 10 Kilometers,Norway,Women,2,silver,Marit Bjørgen,25
 2006,Cross-Country Skiing,Women's 10 Kilometers,Norway,Women,3,bronze,Hilde Gjermundshaug Pedersen,41
-2006,Cross-Country Skiing,Women's 30 Kilometers,Czech Republic,Women,1,gold,KateÅ™ina Neumannová,32
+2006,Cross-Country Skiing,Women's 30 Kilometers,Czech Republic,Women,1,gold,Kateřina Neumannová,32
 2006,Cross-Country Skiing,Women's 30 Kilometers,Russia,Women,2,silver,Yuliya Chepalova,29
 2006,Cross-Country Skiing,Women's 30 Kilometers,Poland,Women,3,bronze,Justyna Kowalczyk,23
-2006,Cross-Country Skiing,Women's 15 km Skiathlon,Estonia,Women,1,gold,Kristina Å migun-Vähi,28
-2006,Cross-Country Skiing,Women's 15 km Skiathlon,Czech Republic,Women,2,silver,KateÅ™ina Neumannová,32
+2006,Cross-Country Skiing,Women's 15 km Skiathlon,Estonia,Women,1,gold,Kristina Šmigun-Vähi,28
+2006,Cross-Country Skiing,Women's 15 km Skiathlon,Czech Republic,Women,2,silver,Kateřina Neumannová,32
 2006,Cross-Country Skiing,Women's 15 km Skiathlon,Russia,Women,3,bronze,Yevgeniya Medvedeva,29
 2006,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Russia,Women,1,gold,Russia,
 2006,Cross-Country Skiing,Women's 4 × 5-Kilometer Relay,Germany,Women,2,silver,Germany,
@@ -2200,7 +2200,7 @@
 2006,Ice Hockey,Women's Ice Hockey,United States,Women,3,bronze,United States,
 2006,Luge,Men's Singles,Italy,Men,1,gold,Armin Zöggeler,32
 2006,Luge,Men's Singles,Russia,Men,2,silver,Albert Demchenko,34
-2006,Luge,Men's Singles,Latvia,Men,3,bronze,MÄrtiÅ†Å¡ Rubenis,27
+2006,Luge,Men's Singles,Latvia,Men,3,bronze,Mārtiņš Rubenis,27
 2006,Luge,Men's Doubles,Austria,Men,1,gold,Austria-1,
 2006,Luge,Men's Doubles,Germany,Men,2,silver,Germany-1,
 2006,Luge,Men's Doubles,Italy,Men,3,bronze,Italy-1,
@@ -2262,7 +2262,7 @@
 2006,Snowboarding,Men's Halfpipe,United States,Men,2,silver,Danny Kass,23
 2006,Snowboarding,Men's Halfpipe,Finland,Men,3,bronze,Markku Koski,24
 2006,Snowboarding,Men's Boardercross,United States,Men,1,gold,Seth Wescott,29
-2006,Snowboarding,Men's Boardercross,Slovakia,Men,2,silver,Radoslav Å½idek,24
+2006,Snowboarding,Men's Boardercross,Slovakia,Men,2,silver,Radoslav Židek,24
 2006,Snowboarding,Men's Boardercross,France,Men,3,bronze,Paul-Henri De Le Rue,21
 2006,Snowboarding,Women's Parallel Giant Slalom,Switzerland,Women,1,gold,Daniela Meuli,24
 2006,Snowboarding,Women's Parallel Giant Slalom,Germany,Women,2,silver,Amelie Kober,18
@@ -2319,10 +2319,10 @@
 2010,Alpine Skiing,Men's Giant Slalom,Norway,Men,2,silver,Kjetil Jansrud,24
 2010,Alpine Skiing,Men's Giant Slalom,Norway,Men,3,bronze,Aksel Lund Svindal,27
 2010,Alpine Skiing,Men's Slalom,Italy,Men,1,gold,Giuliano Razzoli,25
-2010,Alpine Skiing,Men's Slalom,Croatia,Men,2,silver,Ivica KosteliÄ‡,30
+2010,Alpine Skiing,Men's Slalom,Croatia,Men,2,silver,Ivica Kostelić,30
 2010,Alpine Skiing,Men's Slalom,Sweden,Men,3,bronze,André Myhrer,27
 2010,Alpine Skiing,Men's Combined,United States,Men,1,gold,Bode Miller,32
-2010,Alpine Skiing,Men's Combined,Croatia,Men,2,silver,Ivica KosteliÄ‡,30
+2010,Alpine Skiing,Men's Combined,Croatia,Men,2,silver,Ivica Kostelić,30
 2010,Alpine Skiing,Men's Combined,Switzerland,Men,3,bronze,Silvan Zurbriggen,28
 2010,Alpine Skiing,Women's Downhill,United States,Women,1,gold,Lindsey Kildow-Vonn,25
 2010,Alpine Skiing,Women's Downhill,United States,Women,2,silver,Julia Mancuso,25
@@ -2335,7 +2335,7 @@
 2010,Alpine Skiing,Women's Giant Slalom,Austria,Women,3,bronze,Elisabeth Görgl,28
 2010,Alpine Skiing,Women's Slalom,Germany,Women,1,gold,Maria Riesch,25
 2010,Alpine Skiing,Women's Slalom,Austria,Women,2,silver,Marlies Schild,28
-2010,Alpine Skiing,Women's Slalom,Czech Republic,Women,3,bronze,Å árka Záhrobská,25
+2010,Alpine Skiing,Women's Slalom,Czech Republic,Women,3,bronze,Šárka Záhrobská,25
 2010,Alpine Skiing,Women's Combined,Germany,Women,1,gold,Maria Riesch,25
 2010,Alpine Skiing,Women's Combined,United States,Women,2,silver,Julia Mancuso,25
 2010,Alpine Skiing,Women's Combined,Sweden,Women,3,bronze,Anja Pärson,28
@@ -2383,7 +2383,7 @@
 2010,Cross-Country Skiing,Men's Sprint,Norway,Men,3,bronze,"Petter Northug, Jr.",24
 2010,Cross-Country Skiing,Men's 15 Kilometers,Switzerland,Men,1,gold,Dario Cologna,23
 2010,Cross-Country Skiing,Men's 15 Kilometers,Italy,Men,2,silver,Pietro Piller Cottrer,35
-2010,Cross-Country Skiing,Men's 15 Kilometers,Czech Republic,Men,3,bronze,LukáÅ¡ Bauer,32
+2010,Cross-Country Skiing,Men's 15 Kilometers,Czech Republic,Men,3,bronze,Lukáš Bauer,32
 2010,Cross-Country Skiing,Men's 50 Kilometers,Norway,Men,1,gold,"Petter Northug, Jr.",24
 2010,Cross-Country Skiing,Men's 50 Kilometers,Germany,Men,2,silver,Axel Teichmann,30
 2010,Cross-Country Skiing,Men's 50 Kilometers,Sweden,Men,3,bronze,Johan Olsson,29
@@ -2400,7 +2400,7 @@
 2010,Cross-Country Skiing,Women's Sprint,Poland,Women,2,silver,Justyna Kowalczyk,27
 2010,Cross-Country Skiing,Women's Sprint,Slovenia,Women,3,bronze,Petra MajdiÄ,30
 2010,Cross-Country Skiing,Women's 10 Kilometers,Sweden,Women,1,gold,Charlotte Kalla,22
-2010,Cross-Country Skiing,Women's 10 Kilometers,Estonia,Women,2,silver,Kristina Å migun-Vähi,32
+2010,Cross-Country Skiing,Women's 10 Kilometers,Estonia,Women,2,silver,Kristina Šmigun-Vähi,32
 2010,Cross-Country Skiing,Women's 10 Kilometers,Norway,Women,3,bronze,Marit Bjørgen,29
 2010,Cross-Country Skiing,Women's 30 Kilometers,Poland,Women,1,gold,Justyna Kowalczyk,27
 2010,Cross-Country Skiing,Women's 30 Kilometers,Norway,Women,2,silver,Marit Bjørgen,29
@@ -2505,10 +2505,10 @@
 2010,Skeleton,Women's Skeleton,Germany,Women,2,silver,Kerstin Szymkowiak,32
 2010,Skeleton,Women's Skeleton,Germany,Women,3,bronze,Anja Huber,26
 2010,Ski Jumping,"Men's Normal Hill, Individual",Switzerland,Men,1,gold,Simon Ammann,28
-2010,Ski Jumping,"Men's Normal Hill, Individual",Poland,Men,2,silver,Adam MaÅ‚ysz,32
+2010,Ski Jumping,"Men's Normal Hill, Individual",Poland,Men,2,silver,Adam Małysz,32
 2010,Ski Jumping,"Men's Normal Hill, Individual",Austria,Men,3,bronze,Gregor Schlierenzauer,20
 2010,Ski Jumping,"Men's Large Hill, Individual",Switzerland,Men,1,gold,Simon Ammann,28
-2010,Ski Jumping,"Men's Large Hill, Individual",Poland,Men,2,silver,Adam MaÅ‚ysz,32
+2010,Ski Jumping,"Men's Large Hill, Individual",Poland,Men,2,silver,Adam Małysz,32
 2010,Ski Jumping,"Men's Large Hill, Individual",Austria,Men,3,bronze,Gregor Schlierenzauer,20
 2010,Ski Jumping,"Men's Large Hill, Team",Austria,Men,1,gold,Austria,
 2010,Ski Jumping,"Men's Large Hill, Team",Germany,Men,2,silver,Germany,
@@ -2726,9 +2726,9 @@
 2014,Alpine Skiing,Men's Super G,United States,Men,2,silver,Andrew Weibrecht,28
 2014,Alpine Skiing,Men's Super G,Canada,Men,3,bronze,Jan Hudec,32
 2014,Alpine Skiing,Men's Super G,United States,Men,3,bronze,Bode Miller,36
-2014,Cross-Country Skiing,Menâ€™s 4x10-Kilometer Relay,Sweden,Men,1,gold,Sweden,
-2014,Cross-Country Skiing,Menâ€™s 4x10-Kilometer Relay,Russia,Men,2,silver,Russia,
-2014,Cross-Country Skiing,Menâ€™s 4x10-Kilometer Relay,France,Men,3,bronze,France,
+2014,Cross-Country Skiing,Men's 4x10-Kilometer Relay,Sweden,Men,1,gold,Sweden,
+2014,Cross-Country Skiing,Men's 4x10-Kilometer Relay,Russia,Men,2,silver,Russia,
+2014,Cross-Country Skiing,Men's 4x10-Kilometer Relay,France,Men,3,bronze,France,
 2014,Snowboarding,Women's Boardercross,Czech Republic,Women,1,gold,Eva Samkova,20
 2014,Snowboarding,Women's Boardercross,Canada,Women,2,silver,Dominique Maltais,33
 2014,Snowboarding,Women's Boardercross,France,Women,3,bronze,Chloe Trespeuch,19
