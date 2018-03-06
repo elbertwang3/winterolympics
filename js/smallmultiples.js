@@ -27,10 +27,10 @@ medaltooltip = d3.select("#smallmultiples")
 
 d3.queue()
     .defer(d3.csv, "data/mergedcountries.csv", type)
-    .defer(d3.csv, "data/gamescoded.csv", type2)
+    .defer(d3.csv, "data/hostannotations.csv", type3)
     .await(display);
 
-function display(error,medals) {
+function display(error,medals, hosts) {
 	console.log(medals);
 
   	var groupByCountry = d3.nest()
@@ -70,6 +70,49 @@ function display(error,medals) {
 		.attr("y", 250)
 		.text(function(d) { return d['key']});
 
+	hosts = hosts.map(function(d) { 
+      		e = {};
+      		e['data'] = d;
+      		e['dx'] = d.dx;
+      		e['dy'] = d.dy;
+      		e['note'] = {'align': d['align']};
+      		e['connector'] = {'end': "arrow",  'type': "curve"};
+
+
+      		return e;
+      	})
+      	.map(function(l) {
+      		annotation = l.data.city + " hosted in " + l.data.country + " in " + l.data.year
+	        l.note = Object.assign({}, l.note, {
+	          label: annotation, wrap: 200})
+	        l.subject = { radius: 4}
+
+	        return l;
+      	});
+     console.log(hosts);
+	window.hostAnnotations =  d3.annotation()
+	        .annotations(hosts)
+	        .type(d3.annotationLabel)
+	        .accessors({ x: function x(d) {
+	        	console.log(d);
+	        		console.log(yearScale2(yearParser(d['year'])))
+					return yearScale2(yearParser(d['year']))
+				}, 
+	          	y: function y(d) {	
+	          		return 300;
+	        	}
+	    	})
+	    	.accessorsInverse({
+			    year: function year(d) {
+			      return yearFormatter(yearScale2.invert(d.x));
+			    },
+			    countries: function freq(d) {
+			      return yScale.invert(d.y);
+			    }
+			})
+	smsvg.append("g")
+				.attr("class", "annotations")
+				.call(hostAnnotations)
 
 	yearbars = smsvg.append("g")
 		.attr("class", "sm-medals")
@@ -141,8 +184,6 @@ function display(error,medals) {
 			.append("div")
 			.text(function(d) { console.log(d); return d;})
 			.attr("class", function(d,i) { 
-				console.log(d);
-				console.log(i);
 				if (i % 2 == 0) {
 					return "column-left";
 				} else {
@@ -178,12 +219,10 @@ function display(error,medals) {
 	  
 	
 	}
+}
 
-
-
-
-
-    	
-
-
+function type3(d) { 
+	d['dx'] = +d['dx'] * 350;
+	d['dy'] = +d['dy'] * 325;
+	return d
 }
