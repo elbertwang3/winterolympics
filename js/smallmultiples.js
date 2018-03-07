@@ -33,6 +33,15 @@ d3.queue()
 function display(error,medals, hosts) {
 	console.log(medals);
 
+	var medalCounts = d3.nest()
+	  	.key(function(d) { return d['Country']; })
+	  	.rollup(function(v) { return {
+		  	gold: d3.sum(v, function(d) { if (d['Medal Rank'] == 1) return 1;}),
+		    silver: d3.sum(v, function(d) { if (d['Medal Rank'] == 2) return 1;}),
+		    bronze: d3.sum(v, function(d) { if (d['Medal Rank'] == 3) return 1;})
+		  }; })
+	  	.entries(medals)
+	console.log(medalCounts);
   	var groupByCountry = d3.nest()
 	  	.key(function(d) { return d['Country']; })
 	  	.key(function(d) { return d['Year']; })
@@ -45,13 +54,28 @@ function display(error,medals, hosts) {
 	console.log(groupByCountry)
 
 
-	var smsvg = d3.select("#smallmultiples").selectAll("svg")
+	var smdiv = d3.select("#smallmultiples").selectAll(".sm-div")
 	  	.data(groupByCountry)
 		.enter()
-		.append("svg")
+		.append("div")
+		.attr("class", "sm-div")
+
+	var svgdiv = smdiv.append("div")
+				.attr("class", "svg-div")
+
+	var smsvg = svgdiv.append("svg")
 	  	.attr("width", smwidth)
 	  	.attr("height", smheight)
 	  	.attr("class", "small-multiple")
+
+	var smimage = smdiv.append("div")
+		.attr("class", "sm-image")
+
+	/*smimage.append("img")
+			.attr("src", function(d) { return 'images/flags/' + d['key'] + 'flaglarge.png';})
+			//.style("top", smmargin.top)
+			.style("left", 20)*/
+
 
 
   
@@ -65,9 +89,25 @@ function display(error,medals, hosts) {
 	console.log(smsvg)
 	smsvg.append("text")
 		.attr("class", "country-label")
-		.attr("x", 25)
-		.attr("y", 250)
+		.attr("x", 0)
+		.attr("y", 300)
 		.text(function(d) { return d['key']});
+
+	var medallabel = svgdiv.append("div")
+		.attr("class", "medal-label-div")
+	medallabel.append("img")
+		.attr('src', function(d) { return "images/medals/1.png"; })
+	medallabel.append("div")
+		.text(function(d) { return medalCounts[medalCounts.findIndex(item => item.key === d['key'])].value.gold; })
+	medallabel.append("img")
+		.attr('src', function(d) { return "images/medals/2.png"; })
+	medallabel.append("div")
+		.text(function(d) { return medalCounts[medalCounts.findIndex(item => item.key === d['key'])].value.silver; })
+	medallabel.append("img")
+		.attr('src', function(d) { return "images/medals/3.png"; })
+	medallabel.append("div")
+		.text(function(d) { return medalCounts[medalCounts.findIndex(item => item.key === d['key'])].value.bronze; })
+	
 
 	hosts = hosts.map(function(d) { 
       		e = {};
@@ -75,7 +115,7 @@ function display(error,medals, hosts) {
       		e['dx'] = d.dx;
       		e['dy'] = d.dy;
       		e['note'] = {'align': d['align']};
-      		e['connector'] = {'end': "arrow",  'type': "curve"};
+      		e['connector'] = {'end': "arrow"};
 
 
       		return e;
@@ -83,7 +123,7 @@ function display(error,medals, hosts) {
       	.map(function(l) {
       		annotation = l.data.country + " hosted in " + l.data.city + " in " + l.data.year
 	        l.note = Object.assign({}, l.note, {
-	          label: annotation, wrap: 200})
+	          label: annotation, wrap: 100})
 	        l.subject = { radius: 4}
 
 	        return l;
@@ -92,21 +132,24 @@ function display(error,medals, hosts) {
     console.log(d3.selectAll(".small-multiple"));
     d3.selectAll(".small-multiple")
     	.each(function(d) { 
-    		console.log(d);
     		//console.log(d['key'])
     		//console.log(hosts);
     		data = d;
-    		var filteredlabels = hosts.filter(host => host.data['country'] == d['key'])
+    		var filteredlabels;
+    		if (d['key'] == 'Serbia') {
+    			filteredlabels = hosts.filter(host => host.data['country'] == 'Yugoslavia')
+    		} else {
+    			filteredlabels = hosts.filter(host => host.data['country'] == d['key'])
+    		}
     		//console.log(filteredlabels);
     		var hostAnnotations =  d3.annotation()
 	        .annotations(filteredlabels)
 	        .type(d3.annotationLabel)
 	        .accessors({ x: function x(d) {
-	        	console.log(d['year'])
 					return yearScale2(yearParser(d['year']))
 				}, 
 	          	y: function y(d) {	
-	          		return smmargin.top + 6 + 8 * data.values.findIndex(item => item.key === d['year']);
+	          		return smmargin.top + 6 + 8 * data.values[data.values.findIndex(item => item.key === d['year'])].values.length;
 	          		//return groupByCountry.findIndex(item => item.key === 'John');;
 	        	}
 	    	})
@@ -124,8 +167,9 @@ function display(error,medals, hosts) {
 				.call(hostAnnotations)
     		return d;
     	})
+   
 
-	yearbars = smsvg.append("g")
+	var yearbars = smsvg.append("g")
 		.attr("class", "sm-medals")
 		.selectAll(".medal")
 		.data(function(d) { return d.values})
@@ -169,6 +213,7 @@ function display(error,medals, hosts) {
 						.text(function (d) { return data['Name of Athlete or Team'] + "      "; })
 		nameline.append("img")
 						.attr('src', function(d) { return "images/flags/"+ data['Country']+"flag.png"; })
+						.attr("class", "flag-img")
 		nameline.append("img")
 						.attr('src', function(d) { return "images/medals/"+ data['Medal Rank']+".png"; });
       	/*tooltipcontainer.append("div")

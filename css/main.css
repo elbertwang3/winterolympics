@@ -335,12 +335,17 @@ body {
 	stroke: #2f2d53;
 }
 
-.annotation-note-label {
+.line-g .annotation-note-label {
 	font-family: "Roboto";
 	font-size: 14px;
 	fill: black;
 }
 
+.small-multiple .annotation-note-label {
+	font-family: "Roboto";
+	font-size: 10px;
+	fill: black;
+}
 .annotation-note-title {
 	font-family: "Roboto";
 	font-weight: 900;
@@ -356,8 +361,6 @@ body {
 
 #smallmultiples {
 	max-width: 1440px;
-	display: block;
-	margin: 0 auto;
 	text-align: center;
 }
 
@@ -377,6 +380,8 @@ body {
 	font-family: "Roboto";
 	font-size: 32px;
 	pointer-events: none;
+	text-transform: uppercase;
+	font-weight: 700;
 }
 
 .medal-tool-tip {
@@ -398,6 +403,10 @@ body {
 
 .medal-tool-tip img {
 	margin-right: 5px;
+}
+
+.medal-tool-tip .flag-img {
+	height: 15px;
 }
 
 .medal-tool-tip .column-left {
@@ -425,6 +434,55 @@ body {
     width: 180px;
     vertical-align: top;
  
+}
+
+.sm-div .sm-image {
+	position: relative;
+	pointer-events: none;
+
+}
+
+.sm-div .svg-div {
+	/*position: absolute;*/
+}
+.sm-div .sm-image img {
+	position: absolute;
+	width: 350px;
+	opacity: 0.3;
+	top: -300px;
+}
+
+.sm-div {
+	display: inline-block;
+	margin: 0 auto;
+	position: relative;
+	
+
+}
+
+.medal-label-div {
+	position: absolute;
+	pointer-events: none;
+	display: inline;
+	z-index: 1000;
+	left: 20;
+	top: 250;
+
+}
+.medal-label-div img {
+	display: inline-block;
+	padding: 3px;
+	vertical-align: middle;
+
+
+
+}
+.medal-label-div div {
+	display: inline-block;
+	padding: 3px;
+	font-family: "Roboto";
+
+
 }
 @media only screen and (max-width: 600px) { 
 	.rings {
