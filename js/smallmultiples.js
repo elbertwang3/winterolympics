@@ -31,7 +31,6 @@ d3.queue()
     .await(display);
 
 function display(error,medals, hosts) {
-	console.log(medals);
 
 	var medalCounts = d3.nest()
 	  	.key(function(d) { return d['Country']; })
@@ -41,7 +40,6 @@ function display(error,medals, hosts) {
 		    bronze: d3.sum(v, function(d) { if (d['Medal Rank'] == 3) return 1;})
 		  }; })
 	  	.entries(medals)
-	console.log(medalCounts);
   	var groupByCountry = d3.nest()
 	  	.key(function(d) { return d['Country']; })
 	  	.key(function(d) { return d['Year']; })
@@ -51,7 +49,6 @@ function display(error,medals, hosts) {
 	  	.sort(function(a, b){ return d3.descending(d3.sum(a.values, function(d) { return d.values.length; }), d3.sum(b.values, function(d) { return d.values.length; })); })
 	  	//.sort(function(a, b){ return d3.descending(a.values.length, b.values.length); })
 
-	console.log(groupByCountry)
 
 
 	var smdiv = d3.select("#smallmultiples").selectAll(".sm-div")
@@ -86,7 +83,6 @@ function display(error,medals, hosts) {
 		     .attr("transform", "translate(0," + (smmargin.top) + ")")
 		    .call(d3.axisTop(yearScale2).tickValues(years2).tickFormat(d3.timeFormat("%Y")));
 
-	console.log(smsvg)
 	smsvg.append("text")
 		.attr("class", "country-label")
 		.attr("x", 0)
@@ -129,7 +125,6 @@ function display(error,medals, hosts) {
 	        return l;
       	});
 
-    console.log(d3.selectAll(".small-multiple"));
     d3.selectAll(".small-multiple")
     	.each(function(d) { 
     		//console.log(d['key'])

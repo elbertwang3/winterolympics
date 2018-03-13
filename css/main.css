@@ -399,6 +399,7 @@ body {
     background: white;
     padding: 0.75em;
     width: 250px;
+    pointer-events: none;
 }
 
 .medal-tool-tip img {
@@ -482,7 +483,28 @@ body {
 	padding: 3px;
 	font-family: "Roboto";
 
+}
 
+#matrix {
+	display: block;
+	margin: 0 auto;
+}
+
+.matrix-svg {
+		display: block;
+	margin: 0 auto;
+}
+
+.cell:hover {
+	stroke: black;
+	cursor: pointer;
+}
+
+.country-axis {
+	font-family: "Roboto";
+}
+.sport-axis {
+	font-family: "Roboto";
 }
 @media only screen and (max-width: 600px) { 
 	.rings {
