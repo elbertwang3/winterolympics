@@ -1,35 +1,26 @@
 var sel = d3.select('#matrix')
 const bbox = sel.node().getBoundingClientRect();
-console.log(bbox);
-mmargin = {top: 100, bottom: 30, left: 80, right: 50};
-mheight = 800 - mmargin.top - mmargin.bottom;
-mwidth = 380 - mmargin.right - mmargin.left;
-console.log(mwidth);
-console.log(mheight);
-console.log(mmargin);
-console.log(mwidth + mmargin.right + mmargin.left)
-console.log(mheight + mmargin.top + mmargin.bottom)
+//console.log(bbox);
+mmargin = {top: 125, bottom: 30, left: 80, right: 80};
+mheight = 720 - mmargin.top - mmargin.bottom;
+mwidth = 377.308 - mmargin.right - mmargin.left;
 var translation = "translate(" + mmargin.left + "," + mmargin.top + ")"
-var rotation = "rotate(45 " + mwidth/2 + " " + 0 + ")"
-var transform = translation + " " + rotation
+//var rotation = "rotate(45 " + mwidth/2 + " " + 0 + ")"
+var transform = translation 
 msvg = d3.select("#matrix")
 	.append("svg")
 	.attr("class", "matrix-svg")
 	.attr("width", mwidth + mmargin.right + mmargin.left)
 	.attr("height", mheight + mmargin.top + mmargin.bottom)
-	.attr("transform", rotation);
+	//.attr("transform", rotation);
 
-
-
-//var transform = translation;
-console.log(transform);
 mg = msvg.append("g")
 	.attr("transform", translation)
 	
 	//.attr("transform", "translate(" + mmargin.left + "," + mmargin.top + ")");
 
 var yearParser = d3.timeParse("%Y");
-//var yearFormatter = d3.timeFormat("%Y");
+var yearFormatter = d3.timeFormat("%Y");
 
 d3.queue()
     .defer(d3.csv, "data/mergedcountries.csv", type)
@@ -46,23 +37,18 @@ function display(error,medals) {
 	  	.entries(medals)
 	  	.sort(function(a, b){ return d3.ascending(d3.sum(a.values, function(d) { return d.values.length; }), d3.sum(b.values, function(d) { return d.values.length; })) })
 	var uniqueCountries = groupedCountries.map(function(d) { return d['key']; })
-	console.log(uniqueCountries);
-	console.log(uniqueCountries.length)
-	console.log(uniqueSports.length)
 
 	var groupedTotal = d3.nest()
 		.key(function(d) { return d['Sport']; })
 		.key(function(d) { return d['Year']; })
 		.rollup(function(leaves) { return leaves.length; })
 		.entries(medals);
-	console.log(groupedTotal);
 
-	/*groupedTotal = groupedTotal.map((e) => {
-   		return {[e.key]: e.values.map((e) => {
-	   		return {[e.key]: e.value};
-	   	})
-	}});*/
-	//console.log(groupedTotal);
+	var groupedTotalAll = d3.nest()
+		.key(function(d) { return d['Sport']; })
+		.rollup(function(leaves) { return leaves.length; })
+		.entries(medals);
+
 	groupedTotal = Object.assign(...groupedTotal.map(({key, values}) => {
 		return ({ [key]: Object.assign(...values.map(({key, value}) => {
 				return ({ [key]: value }) 
@@ -70,15 +56,24 @@ function display(error,medals) {
 		})
 	}));
 
-	console.log(groupedTotal);
+	groupedTotalAll = Object.assign(...groupedTotalAll.map(({key, value}) => {
+		return ({ [key]: value }) 
+	}));
+
 	var groupedCountries = d3.nest()
 		.key(function(d) { return d['Sport']; })
+		.key(function(d) { return d['Country']; })
 		.key(function(d) { return d['Year']; })
+		.rollup(function(leaves) { return leaves.length; })
+		.entries(medals);
+
+
+	var groupedCountriesAll = d3.nest()
+		.key(function(d) { return d['Sport']; })
 		.key(function(d) { return d['Country']; })
 		.rollup(function(leaves) { return leaves.length; })
 		.entries(medals);
 
-	console.log(groupedCountries);
 	groupedCountries = Object.assign(...groupedCountries.map(({key, values}) => {
 		return ({ [key]: Object.assign(...values.map(({key, values}) => {
 				return ({ [key]: Object.assign(...values.map(({key, value}) => {
@@ -88,19 +83,34 @@ function display(error,medals) {
 			}))
 		})	
 	}));
-	console.log(groupedCountries);
 
+	groupedCountriesAll = Object.assign(...groupedCountriesAll.map(({key, values}) => {
+		return ({ [key]: Object.assign(...values.map(({key, value}) => {
+			return ({ [key]: value  }) 
+			}))
+		})
+	}));
+	for (var property in groupedCountriesAll) {
+	    if (groupedCountriesAll.hasOwnProperty(property)) {
+	    	let a = new Set(Object.keys(groupedCountriesAll[property]))
+	    	let b = new Set(uniqueCountries)
+	    	let c = new Set([...b].filter(x => !a.has(x)));
+	    	c.forEach(function(d) {
+	    		groupedCountriesAll[property][d] = 0
+	    	})
+	    }
+	}
 	uniqueSports.forEach(function(sport) {
 		years = groupedCountries[sport];
-		uniqueYears.forEach(function(year) {
-			countries = groupedCountries[sport][year]
-			uniqueCountries.forEach(function(country) {
-				if (groupedCountries[sport][year] == null) {
-					groupedCountries[sport][year] = {};
-				} else if (groupedCountries[sport][year][country] == null) {
-					groupedCountries[sport][year][country] = 0;
+		uniqueCountries.forEach(function(country) {
+			countries = groupedCountries[sport][country]
+			uniqueYears.forEach(function(year) {
+				if (groupedCountries[sport][country] == null) {
+					groupedCountries[sport][country] = {};
+				} else if (groupedCountries[sport][country][year] == null) {
+					groupedCountries[sport][country][year] = 0;
 				} else {
-					groupedCountries[sport][year][country] /= groupedTotal[sport][year]
+					groupedCountries[sport][country][year] /= groupedTotal[sport][year]
 				}
 
 			})
@@ -108,30 +118,39 @@ function display(error,medals) {
 			
 		})
 	})
-	console.log(groupedCountries);
-	/*for (var property in groupedCountries) {
-	    if (groupedCountries.hasOwnProperty(property)) {
-	        for (var property2 in groupedCountries[property]) {
-			    if (grouped.hasOwnProperty(property2)) {
-			        // do stuff
-			    }
+	uniqueSports.forEach(function(sport) {
+		years = groupedCountriesAll[sport];
+		uniqueCountries.forEach(function(country) {
+			if (groupedCountriesAll[sport] == null) {
+				groupedCountriesAll[sport] = {};
+			} else if (groupedCountriesAll[sport][country] == null) {
+				groupedCountriesAll[sport][country] = 0;
+			} else {
+				groupedCountriesAll[sport][country] /= groupedTotalAll[sport]
 			}
-		}
-	}*/
+		})	
+	})
+
 	flattened = flattenObject(groupedCountries)
-	console.log(flattened);
+	flattenedAll = flattenObject(groupedCountriesAll);
+	
 	flattenedobjects = Object.keys(flattened).map(d => {
 		//console.log(d);
 		return {'year': d, 'share': flattened[d]}
 	})
-	console.log(flattenedobjects);
+
+	flattenedobjectsAll = Object.keys(flattenedAll).map(d => {
+		//console.log(d);
+		return {'year': d, 'share': flattenedAll[d]}
+	})
+
+	console.log(flattenedobjectsAll);
 
 	flattenedobjects = flattenedobjects.filter(d => d['share'] != 0)
-	console.log(flattenedobjects);
 
 	yearScale3 = d3.scaleTime()
-  		.domain([yearParser("1924"), yearParser("2014")])
-  		.range([0, 100])
+  		.domain([yearParser("2014"), yearParser("1924")])
+  		.range([0, -100])
 	countryScale2 = d3.scaleBand()
 		.domain(uniqueCountries)
 		.range([mheight, 0])
@@ -145,31 +164,46 @@ function display(error,medals) {
 	var cellSize = 20;
 	console.log(chroma.scale(['#fafa6e','#2A4858'])
     .mode('lch').colors(6));
-	shareScale = d3.scaleQuantile()
-		.domain([0, 0.5])
+	shareScale = d3.scaleQuantize()
+		//.domain([0.00000001, 0.025,0.05,0.1,0.4,0.6])
 		.range(chroma.scale(['#fafa6e','#2A4858'])
     .mode('lch').colors(6))
 
 
+	console.log(flattenedobjectsAll);
 	mg.append("g")
 		.attr("class", "cells")
 		.selectAll(".cell")
-		.data(flattenedobjects)
+		.data(flattenedobjectsAll)
 		.enter()
 		.append("rect")
-		.attr("class", "cell")
+		.attr("class", function(d) { 
+			return "cell"
+		})
 		.attr("height", countryScale2.bandwidth())
 		.attr("width", sportScale2.bandwidth())
 		.translate(function(d){ 
-			[sport, year, country] = d['year'].split(".")
+			[sport, country] = d['year'].split(".")
 
 			return [sportScale2(sport), countryScale2(country)]
 		})
 		/*.attr("y", function(d) { 
-			[sport, year, country] = d['year'].split(".")
+			[sport, country] = d['year'].split(".")
 			return yearScale3(year)
 		})*/
-		.attr("fill", function(d) { return shareScale(d['share'])})
+		/*.attr("x", function(d) {
+			[sport, country] = d['year'].split(".")
+			if (year != "1924") {
+				return -sportScale2.bandwidth();
+			} else {
+				return 0;
+			}
+		})*/
+		.attr("fill", function(d) { 
+			[sport, country] = d['year'].split(".")
+			var values = Object.values(groupedCountriesAll[sport])
+			shareScale.domain([0, d3.max(values)])
+			return shareScale(d['share'])})
 		.on("mouseover", function(d) { 
 			data = d
 			mouseOverEvents(d,d3.select(this));
@@ -179,6 +213,12 @@ function display(error,medals) {
 			d3.select(this).classed("hover", false);
 			mouseOutEvents(d,d3.select(this));
 		})
+		/*.attr("transform", function(d) {
+			[sport, year, country] = d['year'].split(".")
+			var translate = "translate(" + sportScale2(sport) + ", " + countryScale2(country) +")"
+			var rotate = "rotate(-45)"
+			return translate + " " + rotate
+		})*/
 
 
 
@@ -188,9 +228,9 @@ function display(error,medals) {
 		.call(countryAxis)
 		.selectAll("text")	
         .style("text-anchor", "end")
-        .attr("dy", "-1em")
-        .attr("dx", "1em")
-        .attr("transform", "rotate(-45)");
+        // .attr("dy", "-1em")
+        // .attr("dx", "1em")
+        // .attr("transform", "rotate(-45)");
 
 	sportAxis = d3.axisTop(sportScale2)
 	mg.append("g")
@@ -198,14 +238,112 @@ function display(error,medals) {
 		.call(sportAxis)
 		.selectAll("text")	
         .style("text-anchor", "start")
-        .attr("transform", "rotate(-45)");
+        .attr("alignment-baseline", "middle")
+        .attr("dy", "1em")
+        .attr("dx", "1em")
+      	.attr("transform", "rotate(-90)");
 
 
 	function mouseOverEvents(d) {
 		console.log(d);
+		[sport, country] = data['year'].split(".")
+			console.log(sport)
+			console.log(country);
+		console.log(d3.select(this))
+
+		/*d3.selectAll(".cell")
+			.classed("unselected", function(d) {
+				console.log(d);
+				[sport2, country2] = d['year'].split(".")
+				if (sport != sport2 || country != country2) {
+					return true;
+				} 
+			})
+			.classed("unselected", true);*/
+		//d3.select(this).classed("unselected", false)
+		mg
+			.append("g")
+			.attr("class", "year-cells")
+			.selectAll(".year.cell")
+			.data(function() { 
+				years = groupedCountries[sport][country]
+				flattenedYearObjects = Object.keys(years).map(d => {
+		//console.log(d);
+		return {'year': d, 'share': years[d]}
+	})
+				console.log(flattenedYearObjects);
+				return flattenedYearObjects;
+			})
+			.enter()
+			.append("rect")
+			.attr("class", function(d) { 
+				return "year cell"
+			})
+			.attr("height", 3)
+			.attr("width", 13)
+			.attr("transform", function(d){ 
+				console.log(d)
+				transform = "translate(" + (sportScale2(sport)) + ", " + (countryScale2(country))+ ") rotate(135 " + 0 + " " + 0 +")";
+				console.log(transform);
+				return transform
+			})
+			.attr("y", function(d) { 
+				return yearScale3(yearParser(d['year']))
+			})
+			/*.attr("x", function(d) {
+				[sport, country] = d['year'].split(".")
+				if (year != "1924") {
+					return -sportScale2.bandwidth();
+				} else {
+					return 0;
+				}
+			})*/
+		.attr("fill", function(d) { 
+			console.log(groupedCountries)
+			var values = Object.values(groupedCountriesAll[sport])
+			console.log(values);
+			shareScale.domain([0, d3.max(values)])
+			return shareScale(d['share'])})
+
+
+
+		d3.select(".country-axis")
+			.selectAll("text")
+			.attr("fill", function(d) {
+				if (d == country) {
+					return "red"
+				} else {
+					return "black";	
+				}
+			})
+		d3.select(".sport-axis")
+			.selectAll("text")
+			.attr("fill", function(d) {
+				if (d == sport) {
+					return "red"
+				} else {
+					return "black";	
+				}
+			})
+
+
 	}
 
 	function mouseOutEvents(d) {
+		d3.select(".country-axis")
+			.selectAll("text")
+			.attr("fill", function(d) {
+				return "black";
+			})
+
+		d3.select(".sport-axis")
+			.selectAll("text")
+			.attr("fill", function(d) {
+				return "black";
+			})
+
+		d3.select(".year-cells")
+			.remove()
 
 	}
 }

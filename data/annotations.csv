@@ -8,8 +8,8 @@ year,annotation,class,dx,dy,align
 1968,"East and West Germany compete as independent teams due to the Cold War",countries,0,0.1,middle
 1972,"The Winter Games are hosted by an Asian country for the first time in Nagano, Japan",countries,0,-0.18,middle
 1988,"IOC votes to hold the Olympic Winter Games halfway through the four-year Olympiad",countries,0,0.1,left
-1994,"The former Soviet Republicans compete as independent nations for the first time",countries,0,-0.15,middle
-2018,"This year, five countries from warmer climates Ecuador, Eritrea, Malaysia, Nigeria and Singapore participate in winter games",countries,0,0.2,right
+1994,"The former Soviet Republics compete as independent nations for the first time",countries,0,-0.15,middle
+2018,"This year, five countries from warmer climates—Ecuador, Eritrea, Malaysia, Nigeria and Singapore—will participate in winter games",countries,0,0.2,right
 1924,"At the first three Winter Games, women were only permitted to compete in figure skating",menwomen,0,-0.566,left
 1936,"Women compete in the alpine skiing for the first time in the combined event",menwomen,-0.03,-0.3,middle
 1948,"Women compete in downhill and slalom for the first time",menwomen,-0.03,-0.1,middle

@@ -332,14 +332,15 @@ var scrollVis = function(medals, countries, games, annotations) {
         // activateFunctions are called each
         // time the active section changes
 	    activateFunctions[0] = showIntro;
-	    activateFunctions[1] = showKorea;
-	    activateFunctions[2] = showChina;
-	    activateFunctions[3] = showAllHosts;
-	    activateFunctions[4] = showLineGraph;
-	    activateFunctions[5] = showParticipants;
-	    activateFunctions[6] = showMenWomen;
-	    activateFunctions[7] = showSports;
-	    activateFunctions[8] = showEvents;
+	    activateFunctions[1] = showChamonix;
+	    activateFunctions[2] = showKorea;
+	    activateFunctions[3] = showChina;
+	    activateFunctions[4] = showAllHosts;
+	    activateFunctions[5] = showLineGraph;
+	    activateFunctions[6] = showParticipants;
+	    activateFunctions[7] = showMenWomen;
+	    activateFunctions[8] = showSports;
+	    activateFunctions[9] = showEvents;
 	    //activateFunctions[8] = 
 	   
 	    
@@ -365,10 +366,25 @@ var scrollVis = function(medals, countries, games, annotations) {
 		d3.selectAll(".city-g").attr("opacity", 0);
 		d3.selectAll(".citytext").attr("opacity", 0);
 	}
+	function showChamonix() {
+		currGraph = "map";
+		
+		france = countries['features'].filter(function(d) { return d['properties']['name'] == 'France'; })[0]
+		zoomTo(france);
+		console.log(france);
+      	
+		d3.selectAll(".city-g").attr("opacity", 0);
+		d3.selectAll(".citytext").attr("opacity", 1);
+		d3.selectAll(".city-g").filter(function(d) { return d['year'] == 1924 }).attr("opacity", 1)
+
+		
+
+	}
 	function showKorea() {
 		currGraph = "map";
 		korea = countries['features'].filter(function(d) { return d['properties']['name'] == 'South Korea'; })[0]
 		zoomTo(korea);
+		console.log(korea);
 		
       	
 		d3.selectAll(".city-g").attr("opacity", 0);
@@ -408,6 +424,8 @@ var scrollVis = function(medals, countries, games, annotations) {
 			d3.selectAll(".city-g").attr("opacity", 1)
 			d3.selectAll(".citytext").attr("opacity", 0);
 		}
+
+		d3.selectAll(".annotations").remove()
 
 	}
 
@@ -469,7 +487,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        .ease(d3.easeLinear)
 	        .attr("stroke-dashoffset", 0);
 
-	    annotationsg.remove()
+	    d3.selectAll(".annotations").remove()
 
 	    yScale = countriesScale;
 		cut = "countriesparticipating";
@@ -517,7 +535,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 
 		}
 
-		annotationsg.remove()
+		d3.selectAll(".annotations").remove()
 		yticks = lineg.selectAll(".ytick-g").data(_.range(300, 3300, 300))
 		
 		yticks.exit().remove()
@@ -633,7 +651,7 @@ var scrollVis = function(medals, countries, games, annotations) {
       		.transition().duration(1500)
         	.attr("width", width);
 
-        annotationsg.remove()
+        d3.selectAll(".annotations").remove()
 			yScale = participantScale;
 			cut = "participants";
 		
@@ -720,7 +738,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        .attr("stroke-dashoffset", 0);
 
 
-	    annotationsg.remove()
+	    d3.selectAll(".annotations").remove()
 		yScale = sportScale;
 		cut = "sports";
 	
@@ -763,6 +781,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 		
 
 		}
+		d3.selectAll(".annotations").remove()
 		yticks = yticksg.selectAll(".ytick-g").data(_.range(10, 105, 10))
 		
 		yticks.exit().remove()
@@ -809,7 +828,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        .ease(d3.easeLinear)
 	        .attr("stroke-dashoffset", 0);
 
-	    annotationsg.remove()
+	    d3.selectAll(".annotations").remove()
 
 	}
 
@@ -822,7 +841,7 @@ var scrollVis = function(medals, countries, games, annotations) {
       	scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
       	translate = [width / 2 - scale * x, height / 2 - scale * y];
    
-
+      	console.log(bounds);
   		map.transition()
       		.duration(1000)
       // .call(zoom.translate(translate).scale(scale).event); // not in d3 v4

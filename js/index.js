@@ -15,7 +15,6 @@ var bottomoffset;
 
 
 $(window).scroll(function() {
-
   	topoffset = $("#graphic1").position().top
   	bottomoffset = $("#graphic1").position().top + $("#sections1").outerHeight(true);
 
