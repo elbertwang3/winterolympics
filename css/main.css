@@ -195,9 +195,10 @@ body {
 	line-height: 1.8;
 	padding: 1rem;
 	color: #53412d;
-	background-color: rgba(255, 249, 241, 0.8);
-
+	background-color: #fff9f1;
+	box-shadow: 0 0 1rem 0.5rem #fff9f1;
 }
+
 
 
 
