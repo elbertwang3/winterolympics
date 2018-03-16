@@ -340,6 +340,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 	    activateFunctions[7] = showMenWomen;
 	    activateFunctions[8] = showSports;
 	    activateFunctions[9] = showEvents;
+	    activateFunctions[10] = clearCanvas;
 	    //activateFunctions[8] = 
 	   
 	    
@@ -422,7 +423,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 			d3.selectAll(".citytext").attr("opacity", 0);
 		}
 
-		d3.selectAll(".annotations").remove()
+		lineg.selectAll(".annotations").remove()
 
 	}
 
@@ -484,7 +485,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        .ease(d3.easeLinear)
 	        .attr("stroke-dashoffset", 0);
 
-	    d3.selectAll(".annotations").remove()
+	    lineg.selectAll(".annotations").remove()
 
 	    yScale = countriesScale;
 		cut = "countriesparticipating";
@@ -507,12 +508,11 @@ var scrollVis = function(medals, countries, games, annotations) {
 			      return yScale.invert(d.y);
 			    }
 			})
-	    
-	    setTimeout(function(){
+	
 			annotationsg = lineg.append("g")
 				.attr("class", "annotations")
 				.call(countryAnnotations)
-			}, 1000)
+
 
 
 
@@ -532,7 +532,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 
 		}
 
-		d3.selectAll(".annotations").remove()
+		lineg.selectAll(".annotations").remove()
 		yticks = lineg.selectAll(".ytick-g").data(_.range(300, 3300, 300))
 		
 		yticks.exit().remove()
@@ -648,7 +648,7 @@ var scrollVis = function(medals, countries, games, annotations) {
       		.transition().duration(1500)
         	.attr("width", width);
 
-        d3.selectAll(".annotations").remove()
+        	lineg.selectAll(".annotations").remove()
 			yScale = participantScale;
 			cut = "participants";
 		
@@ -673,11 +673,9 @@ var scrollVis = function(medals, countries, games, annotations) {
 			    }
 			})
 	    
-	    setTimeout(function(){
 			annotationsg = lineg.append("g")
 				.attr("class", "annotations")
 				.call(menwomenAnnotations)
-			}, 1000)
 	    
 
 	}
@@ -693,6 +691,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 
 		}
 		d3.select("#rectClip rect")
+				.transition(1000)
 	        	.attr("width", 0);
 
 		yticks = yticksg.selectAll(".ytick-g").data(_.range(3, 18, 3))
@@ -735,7 +734,7 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        .attr("stroke-dashoffset", 0);
 
 
-	    d3.selectAll(".annotations").remove()
+	    lineg.selectAll(".annotations").remove()
 		yScale = sportScale;
 		cut = "sports";
 	
@@ -760,16 +759,16 @@ var scrollVis = function(medals, countries, games, annotations) {
 		    }
 		})
 	    
-	    setTimeout(function(){
+
 			annotationsg = lineg.append("g")
 				.attr("class", "annotations")
 				.call(sportsAnnotations)
-			}, 1000)
 		
 
 	}
 
 	function showEvents() {
+
 		currGraph = "line";
 		if (lastIndex >= 9) {
 			/*lineg.selectAll(".layer").select(".area")
@@ -778,7 +777,9 @@ var scrollVis = function(medals, countries, games, annotations) {
 		
 
 		}
-		d3.selectAll(".annotations").remove()
+		d3.select("#rectClip rect")
+	        .attr("width", 0);
+		lineg.selectAll(".annotations").remove()
 		yticks = yticksg.selectAll(".ytick-g").data(_.range(10, 105, 10))
 		
 		yticks.exit().remove()
@@ -825,7 +826,15 @@ var scrollVis = function(medals, countries, games, annotations) {
 	        .ease(d3.easeLinear)
 	        .attr("stroke-dashoffset", 0);
 
-	    d3.selectAll(".annotations").remove()
+	    lineg.selectAll(".annotations").remove()
+
+	}
+
+	function clearCanvas() {
+		d3.select("#rectClip rect")
+	        .attr("width", 0);
+
+	    lineg.selectAll(".annotations").remove()
 
 	}
 

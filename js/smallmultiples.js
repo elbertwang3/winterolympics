@@ -49,7 +49,7 @@ function display(error,medals, hosts) {
 	  	.sort(function(a, b){ return d3.descending(d3.sum(a.values, function(d) { return d.values.length; }), d3.sum(b.values, function(d) { return d.values.length; })); })
 	  	//.sort(function(a, b){ return d3.descending(a.values.length, b.values.length); })
 
-	console.log(groupByCountry);
+
 
 
 	var smdiv = d3.select("#smallmultiples").selectAll(".sm-div")
@@ -65,16 +65,6 @@ function display(error,medals, hosts) {
 	  	.attr("width", smwidth)
 	  	.attr("height", smheight)
 	  	.attr("class", "small-multiple")
-
-	/*var smimage = smdiv.append("div")
-		.attr("class", "sm-image")*/
-
-	/*smimage.append("img")
-			.attr("src", function(d) { return 'images/flags/' + d['key'] + 'flaglarge.png';})
-			//.style("top", smmargin.top)
-			.style("left", 20)*/
-
-
 
   
 
@@ -141,45 +131,7 @@ function display(error,medals, hosts) {
 	        return l;
       	});
 
-    //d3.selectAll(".small-multiple")
-    smsvg
-    	.each(function(d) { 
-    		//console.log(d['key'])
-    		console.log("getting here");
-    		data = d;
-    		var filteredlabels;
-    		if (d['key'] == 'Serbia') {
-    			filteredlabels = hosts.filter(host => host.data['country'] == 'Yugoslavia')
-    		} else {
-    			filteredlabels = hosts.filter(host => host.data['country'] == d['key'])
-    		}
-    		//console.log(filteredlabels);
-    		var hostAnnotations =  d3.annotation()
-	        .annotations(filteredlabels)
-	        .type(d3.annotationLabel)
-	        .accessors({ x: function x(d) {
-					return yearScale2(yearParser(d['year']))
-				}, 
-	          	y: function y(d) {	
-	          		return smmargin.top + 6 + 8 * data.values[data.values.findIndex(item => item.key === d['year'])].values.length;
-	          		//return groupByCountry.findIndex(item => item.key === 'John');;
-	        	}
-	    	})
-	    	.accessorsInverse({
-			    year: function year(d) {
-			      return yearFormatter(yearScale2.invert(d.x));
-			    },
-			    countries: function freq(d) {
-			      return yScale.invert(d.y);
-			    }
-			})
-			d3.select(this)
-				.append("g")
-				.attr("class", function(d) { console.log("Getting HERE!"); return "annotations"; })
-				.call(hostAnnotations)
-				
-    		return d;
-    	})
+   
    
 
 	var yearbars = smsvg.append("g")
@@ -213,6 +165,44 @@ function display(error,medals, hosts) {
 			mouseOutEvents(d,d3.select(this));
 		})
 
+
+	d3.selectAll(".small-multiple")
+    //smsvg
+    	.each(function(d) { 
+    		data = d;
+    		var filteredlabels;
+    		if (d['key'] == 'Serbia') {
+    			filteredlabels = hosts.filter(host => host.data['country'] == 'Yugoslavia')
+    		} else {
+    			filteredlabels = hosts.filter(host => host.data['country'] == d['key'])
+    		}
+    		//console.log(filteredlabels);
+    		var hostAnnotations =  d3.annotation()
+	        .annotations(filteredlabels)
+	        .type(d3.annotationLabel)
+	        .accessors({ x: function x(d) {
+					return yearScale2(yearParser(d['year']))
+				}, 
+	          	y: function y(d) {	
+	          		return smmargin.top + 6 + 8 * data.values[data.values.findIndex(item => item.key === d['year'])].values.length;
+	          		//return groupByCountry.findIndex(item => item.key === 'John');;
+	        	}
+	    	})
+	    	.accessorsInverse({
+			    year: function year(d) {
+			      return yearFormatter(yearScale2.invert(d.x));
+			    },
+			    countries: function freq(d) {
+			      return yScale.invert(d.y);
+			    }
+			})
+			d3.select(this)
+				.append("g")
+				.attr("class", function(d) { return "annotations"; })
+				.call(hostAnnotations)
+
+    		return d;
+    	})
 	function mouseOverEvents(d) { 
 		var tooltipcontainer = medaltooltip.append("div");
 

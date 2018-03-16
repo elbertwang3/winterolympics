@@ -1,5 +1,5 @@
 var amargin = {top: 15, bottom: 15, right: 25, left: 35},
-awidth = 500 - amargin.right - amargin.left,
+awidth = 450 - amargin.right - amargin.left,
 aheight = 50 - amargin.top - amargin.bottom;
 
 
@@ -10,9 +10,6 @@ var ageScale = d3.scaleLinear()
 	.domain([0, 50])
 	.rangeRound([0, awidth])
 
-var freqScale = d3.scaleLinear()
-	//.domain([0, 100])
-	.range([aheight, 0])
 
 var boxplot = d3.box()
     .whiskers(iqr(1))
@@ -39,34 +36,6 @@ function display(error,medals) {
 	  	.entries(filterForAge)
 
 
-
-
-	/*var agediv = d3.select("#age").selectAll(".sm-div")
-	  	.data(groupBySportGenderYear[0].values)
-		.enter()
-		.append("div")
-		.attr("class", "sm-div")
-
-	var svgagediv = agediv.append("div")
-				.attr("class", "svg-div")
-
-	var agesvg = svgagediv.selectAll(".box")
-		.data(function(d) { return d.values; })
-		.enter()
-		.append("svg")
-	  	.attr("width", awidth + amargin.right + amargin.left)
-	  	.attr("height", aheight + amargin.top + amargin.bottom)
-	  	.attr("class", "box")
-
-
-
-	ag = agesvg.append('g')
-		.attr("transform", "translate(" + amargin.left + "," + amargin.top + ")")
-		.call(boxplot);
-
-	ag.append("text")	
-		.text(function(d) { return d['key'] + "'s " + d.values[0]['Sport']; })*/
-
 	i = 0;
 	d3.select("#age").append("div")
 		.text(groupBySportGenderYear[i]['key'])
@@ -81,7 +50,8 @@ function display(error,medals) {
 			.enter()
 			.append("div")
 			.attr("class", "sm-age-div")
-			.append("div")
+			
+		agediventer.append("div")
 			.text(function(d) { return d['key']})
 			.attr("class", "sport")
 
@@ -118,13 +88,6 @@ function display(error,medals) {
 		  	//.merge(agesvgenter)
 		  	.select('.box-g')
 			.call(boxplot.duration(1000));
-
-		/*.selectAll(".box")
-			.append("text")
-			.attr("y", 100)
-
-		d3.selectAll(".box")
-			.text(function(d) { return d['key'] + "'s " + d.values[0]['Sport']; })*/
 	
     	i++;
   	}, 2000);
