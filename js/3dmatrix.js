@@ -27,7 +27,6 @@ d3.queue()
     .await(display);
 
 function display(error,medals) {
-	console.log(medals);
 
 	var uniqueYears = d3.map(medals, function(d){return d['Year'];}).keys()
 	var uniqueSports = d3.map(medals, function(d){return d['Sport'];}).keys()
@@ -144,7 +143,6 @@ function display(error,medals) {
 		return {'year': d, 'share': flattenedAll[d]}
 	})
 
-	console.log(flattenedobjectsAll);
 
 	flattenedobjects = flattenedobjects.filter(d => d['share'] != 0)
 
@@ -155,22 +153,19 @@ function display(error,medals) {
 		.domain(uniqueCountries)
 		.range([mheight, 0])
 		.padding(0.1)
-	console.log(uniqueSports);
-	console.log(uniqueYears);
+
 	sportScale2 = d3.scaleBand()
 		.domain(uniqueSports)
 		.range([0, mwidth])
 		.padding(0.1)
 	var cellSize = 20;
-	console.log(chroma.scale(['#fafa6e','#2A4858'])
-    .mode('lch').colors(6));
+
 	shareScale = d3.scaleQuantize()
 		//.domain([0.00000001, 0.025,0.05,0.1,0.4,0.6])
-		.range(chroma.scale(['#fafa6e','#2A4858'])
-    .mode('lch').colors(6))
+		.range(['#ffffd9','#a4d7c0','#43aabf','#3377a8','#1e4785','#081d58'])
 
 
-	console.log(flattenedobjectsAll);
+
 	mg.append("g")
 		.attr("class", "cells")
 		.selectAll(".cell")
@@ -245,11 +240,7 @@ function display(error,medals) {
 
 
 	function mouseOverEvents(d) {
-		console.log(d);
 		[sport, country] = data['year'].split(".")
-			console.log(sport)
-			console.log(country);
-		console.log(d3.select(this))
 
 		/*d3.selectAll(".cell")
 			.classed("unselected", function(d) {
@@ -261,7 +252,7 @@ function display(error,medals) {
 			})
 			.classed("unselected", true);*/
 		//d3.select(this).classed("unselected", false)
-		mg
+		/*mg
 			.append("g")
 			.attr("class", "year-cells")
 			.selectAll(".year.cell")
@@ -290,20 +281,13 @@ function display(error,medals) {
 			.attr("y", function(d) { 
 				return yearScale3(yearParser(d['year']))
 			})
-			/*.attr("x", function(d) {
-				[sport, country] = d['year'].split(".")
-				if (year != "1924") {
-					return -sportScale2.bandwidth();
-				} else {
-					return 0;
-				}
-			})*/
+		
 		.attr("fill", function(d) { 
 			console.log(groupedCountries)
 			var values = Object.values(groupedCountriesAll[sport])
 			console.log(values);
 			shareScale.domain([0, d3.max(values)])
-			return shareScale(d['share'])})
+			return shareScale(d['share'])})*/
 
 
 

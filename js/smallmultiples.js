@@ -49,6 +49,7 @@ function display(error,medals, hosts) {
 	  	.sort(function(a, b){ return d3.descending(d3.sum(a.values, function(d) { return d.values.length; }), d3.sum(b.values, function(d) { return d.values.length; })); })
 	  	//.sort(function(a, b){ return d3.descending(a.values.length, b.values.length); })
 
+	console.log(groupByCountry);
 
 
 	var smdiv = d3.select("#smallmultiples").selectAll(".sm-div")

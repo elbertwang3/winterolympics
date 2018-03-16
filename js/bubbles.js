@@ -312,18 +312,17 @@ var scrollVis = function(medals, countries, games, annotations) {
 		$(window).on("resize", function() {
 			
       		var chart = $(".svg"),
-		   	aspect = chart.width() / chart.height(),
-		    parentcontainer = $("#sections");
+		   	baspect = chart.width() / chart.height(),
+		    parentcontainer = $("#sections1");
 	
-		    var targetWidth = parentcontainer.width();
-		    chart.attr("width", targetWidth);
+		    var btargetWidth = parentcontainer.width();
+		    chart.attr("width", btargetWidth);
 		    //chart.attr("height", Math.round(targetWidth / aspect));
-
 		    if (currGraph == "map") {
 
 		    	chart.attr("height", window.innerHeight);
 		    } else {
-		    	chart.attr("height", targetWidth/aspect);
+		    	chart.attr("height", btargetWidth/baspect);
 		    }
 		}).trigger("resize");
     }
@@ -371,7 +370,6 @@ var scrollVis = function(medals, countries, games, annotations) {
 		
 		france = countries['features'].filter(function(d) { return d['properties']['name'] == 'France'; })[0]
 		zoomTo(france);
-		console.log(france);
       	
 		d3.selectAll(".city-g").attr("opacity", 0);
 		d3.selectAll(".citytext").attr("opacity", 1);
@@ -384,7 +382,6 @@ var scrollVis = function(medals, countries, games, annotations) {
 		currGraph = "map";
 		korea = countries['features'].filter(function(d) { return d['properties']['name'] == 'South Korea'; })[0]
 		zoomTo(korea);
-		console.log(korea);
 		
       	
 		d3.selectAll(".city-g").attr("opacity", 0);
@@ -841,7 +838,6 @@ var scrollVis = function(medals, countries, games, annotations) {
       	scale = Math.max(1, Math.min(8, 0.9 / Math.max(dx / width, dy / height))),
       	translate = [width / 2 - scale * x, height / 2 - scale * y];
    
-      	console.log(bounds);
   		map.transition()
       		.duration(1000)
       // .call(zoom.translate(translate).scale(scale).event); // not in d3 v4

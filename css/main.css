@@ -366,6 +366,10 @@ body {
 	text-align: center;
 }
 
+#age {
+	max-width: 1440px;
+	text-align: center;
+}
 .small-multiple {
 	margin-right: 20px;
 	margin-left: 20px;
@@ -463,6 +467,13 @@ body {
 
 }
 
+.box {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+
+
 .medal-label-div {
 	position: absolute;
 	pointer-events: none;
@@ -520,6 +531,29 @@ body {
 .year.cell {
 	pointer-events: none;
 }
+
+
+.box {
+  font: 10px sans-serif;
+}
+
+.box line,
+.box rect,
+.box circle {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.box .center {
+  stroke-dasharray: 3,3;
+}
+
+.box .outlier {
+  fill: none;
+  stroke: #ccc;
+}
+
 @media only screen and (max-width: 600px) { 
 	.rings {
 		width: 400px;
