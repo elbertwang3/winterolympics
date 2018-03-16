@@ -66,8 +66,8 @@ function display(error,medals, hosts) {
 	  	.attr("height", smheight)
 	  	.attr("class", "small-multiple")
 
-	var smimage = smdiv.append("div")
-		.attr("class", "sm-image")
+	/*var smimage = smdiv.append("div")
+		.attr("class", "sm-image")*/
 
 	/*smimage.append("img")
 			.attr("src", function(d) { return 'images/flags/' + d['key'] + 'flaglarge.png';})
@@ -84,13 +84,13 @@ function display(error,medals, hosts) {
 		     .attr("transform", "translate(0," + (smmargin.top) + ")")
 		    .call(d3.axisTop(yearScale2).tickValues(years2).tickFormat(d3.timeFormat("%Y")));
 
-	smsvg.append("text")
-		.attr("class", "country-label")
-		.attr("x", 0)
-		.attr("y", 300)
-		.text(function(d) { return d['key']});
 
-	var medallabel = svgdiv.append("div")
+	var outerlabeldiv = d3.selectAll(".sm-div")
+		.append("div")
+		.attr("class", "outer-label-div")
+
+	medallabel = outerlabeldiv
+		.append("div")
 		.attr("class", "medal-label-div")
 	medallabel.append("img")
 		.attr('src', function(d) { return "images/medals/1.png"; })
@@ -104,6 +104,21 @@ function display(error,medals, hosts) {
 		.attr('src', function(d) { return "images/medals/3.png"; })
 	medallabel.append("div")
 		.text(function(d) { return medalCounts[medalCounts.findIndex(item => item.key === d['key'])].value.bronze; })
+
+	annotationwrapper = outerlabeldiv.append("div")
+		.attr("class", "annotation-wrapper")
+
+	annotationwrapper
+		.append("div")
+		.attr("class", "country-label")
+		.text(function(d) { return d['key']});
+
+	annotationwrapper
+		.append("img")
+		.attr("src", function(d) { return "images/flags/"+ d['key']+"flag.png"; })
+		.attr("class", "country-label-flag")
+
+
 	
 
 	hosts = hosts.map(function(d) { 
@@ -126,10 +141,11 @@ function display(error,medals, hosts) {
 	        return l;
       	});
 
-    d3.selectAll(".small-multiple")
+    //d3.selectAll(".small-multiple")
+    smsvg
     	.each(function(d) { 
     		//console.log(d['key'])
-    		//console.log(hosts);
+    		console.log("getting here");
     		data = d;
     		var filteredlabels;
     		if (d['key'] == 'Serbia') {
@@ -159,7 +175,7 @@ function display(error,medals, hosts) {
 			})
 			d3.select(this)
 				.append("g")
-				.attr("class", "annotations")
+				.attr("class", function(d) { console.log("Getting HERE!"); return "annotations"; })
 				.call(hostAnnotations)
     		return d;
     	})

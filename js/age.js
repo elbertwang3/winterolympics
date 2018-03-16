@@ -1,4 +1,4 @@
-var amargin = {top: 15, bottom: 15, right: 25, left: 25},
+var amargin = {top: 15, bottom: 15, right: 25, left: 35},
 awidth = 500 - amargin.right - amargin.left,
 aheight = 50 - amargin.top - amargin.bottom;
 
@@ -68,20 +68,22 @@ function display(error,medals) {
 		.text(function(d) { return d['key'] + "'s " + d.values[0]['Sport']; })*/
 
 	i = 0;
-	d3.select("#age").append("text")
+	d3.select("#age").append("div")
 		.text(groupBySportGenderYear[i]['key'])
+		.attr("class", "yeartext")
 	setInterval(function() {
-		d3.select("#age").select("text")
+		d3.select("#age").select(".yeartext")
 			.text(groupBySportGenderYear[i % 22]['key'])
-		agediv = d3.select("#age").selectAll(".sm-div").data(groupBySportGenderYear[i % 22].values, function(d) { return d['key']})
+		agediv = d3.select("#age").selectAll(".sm-age-div").data(groupBySportGenderYear[i % 22].values, function(d) { return d['key']})
 		agediv.exit().remove();
 
 		agediventer = agediv
 			.enter()
 			.append("div")
-			.attr("class", "sm-div")
+			.attr("class", "sm-age-div")
 			.append("div")
 			.text(function(d) { return d['key']})
+			.attr("class", "sport")
 
 		agediv = agediv
 			.merge(agediventer)
@@ -100,12 +102,17 @@ function display(error,medals) {
 		  	.attr("width", awidth + amargin.right + amargin.left)
 		  	.attr("height", aheight + amargin.top + amargin.bottom)
 		  	.attr("class", "box")
-		  	.append('g')
+		  	
+		agesvgenter.append('g')
 		  	.attr("transform", "translate(" + amargin.left + "," + amargin.top + ")")
 		  	.attr("class", "box-g")
 			.call(boxplot.duration(1000))
-			.append("text")
-			.text(function(d) { return d['key']});
+			
+		agesvgenter.append("text")
+			.text(function(d) { return d['key']})
+			.attr("class", "gender")
+			.attr("x", 0)
+			.attr("y", 25)
 		  
 		agesvg
 		  	//.merge(agesvgenter)

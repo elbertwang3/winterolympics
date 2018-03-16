@@ -467,6 +467,12 @@ body {
 
 }
 
+.sm-age-div {
+	margin: 0 auto;
+	
+
+}
+
 .box {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -474,22 +480,43 @@ body {
 
 
 
-.medal-label-div {
+.outer-label-div {
 	position: absolute;
 	pointer-events: none;
-	display: inline;
+
 	z-index: 1000;
 	left: 20;
 	top: 250;
 
 }
+
+.medal-label-div {
+	display: inline;
+		float: left;
+}
+
+
 .medal-label-div img {
 	display: inline-block;
 	padding: 3px;
 	vertical-align: middle;
+}
 
+.annotation-wrapper {
+	display: block;
+}
+.country-label-div {
+	display: block;
+}
+.country-label {
+	display: inline-block;
+}
 
-
+.country-label-flag {
+	display: inline-block;
+	height: 23px;
+	margin-left: 5px;
+	width: auto;
 }
 .medal-label-div div {
 	display: inline-block;
@@ -552,6 +579,29 @@ body {
 .box .outlier {
   fill: none;
   stroke: #ccc;
+}
+
+#age .yeartext {
+	font-size: 36px;
+	font-family: 'Roboto';
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+.sm-age-div .sport {
+	font-size: 14px;
+	font-family: 'Roboto';
+	text-transform: uppercase;
+	font-weight: 700;
+
+}
+
+.box .gender {
+	font-size: 12px;
+	font-family: 'Roboto';
+	alignment-baseline: middle;
+	text-transform: capitalize;
+
 }
 
 @media only screen and (max-width: 600px) { 

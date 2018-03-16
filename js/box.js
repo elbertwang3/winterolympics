@@ -15,6 +15,7 @@ d3.box = function() {
   function box(g) {
     g.each(function(d, i) {
       d = d.values.map(function(d) { return d['Age']}).sort(d3.ascending);
+      allages = d;
       var g = d3.select(this),
           n = d.length,
           min = d[0],
@@ -88,7 +89,7 @@ d3.box = function() {
       boxEnter = box.enter().append("rect")
           .attr("class", "boxplot")
           .attr("y", 0)
-          .attr("x", function(d) { console.log("I'm getting here"); return x0(d[0]); })
+          .attr("x", function(d) { console.log(d); console.log(x0(d[0])); return x0(d[0]); })
           .attr("height", height)
           .attr("width", function(d) { return x0(d[2]) - x0(d[0]); })
         .transition()
@@ -96,11 +97,10 @@ d3.box = function() {
           .attr("x", function(d) { return x1(d[0]); })
           .attr("width", function(d) { return x1(d[2]) - x1(d[0]); });
 
-      console.log(box)
       box
           .transition()
           .duration(1000)
-          .attr("x", function(d) { console.log("Gettting here?"); return x1(d[0]); })
+          .attr("x", function(d) { return x1(d[0]); })
           .attr("width", function(d) { return x1(d[2]) - x1(d[0]); });
       // Update median line.
       var medianLine = g.selectAll("line.median")
@@ -139,7 +139,6 @@ d3.box = function() {
           .attr("x2", x1)
           .style("opacity", 1);
 
-      console.log(whisker);
       whisker.transition()
           .duration(duration)
           .attr("x1", x1)
@@ -154,28 +153,30 @@ d3.box = function() {
           .remove();
 
       // Update outliers.
+      console.log(outlierIndices);
       var outlier = g.selectAll("circle.outlier")
-          .data(outlierIndices, Number);
+          .data(outlierIndices);
 
+      
       outlier.enter().insert("circle", "text")
           .attr("class", "outlier")
           .attr("r", 5)
           .attr("cy", height / 2)
-          .attr("cx", function(i) { return x0(d[i]); })
+          .attr("cx", function(i) { return x0(allages[i]); })
           .style("opacity", 1e-6)
         .transition()
           .duration(duration)
-          .attr("cx", function(i) { return x1(d[i]); })
+          .attr("cx", function(i) { return x1(allages[i]); })
           .style("opacity", 1);
 
       outlier.transition()
           .duration(duration)
-          .attr("cx", function(i) { return x1(d[i]); })
+          .attr("cx", function(i) { return x1(allages[i]); })
           .style("opacity", 1);
 
       outlier.exit().transition()
           .duration(duration)
-          .attr("cx", function(i) { return x1(d[i]); })
+          .attr("cx", function(i) { return x1(allages[i]); })
           .style("opacity", 1e-6)
           .remove();
 
