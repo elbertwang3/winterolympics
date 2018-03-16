@@ -292,7 +292,6 @@ body {
 }
 .citytext {
 	font-family: "Roboto";
-	text-transform: uppercase;
 	font-weight: 600;
 	fill: #53412d;
 	pointer-events: none;
@@ -626,11 +625,15 @@ body {
 	font-family: "Open Sans";
 	text-align: left;
 	margin-top: 50px;
+	color: #53412d;
+	max-width: 500px;
+	display: block;
+	margin: 0 auto;
 
 }
 
 .credits h2 {
-	max-width: 600px;
+
 	margin: 0 auto;
 	font-family: "Open Sans";
 	font-size: 24px;
