@@ -89,7 +89,7 @@ d3.box = function() {
       boxEnter = box.enter().append("rect")
           .attr("class", "boxplot")
           .attr("y", 0)
-          .attr("x", function(d) { console.log(d); console.log(x0(d[0])); return x0(d[0]); })
+          .attr("x", function(d) { return x0(d[0]); })
           .attr("height", height)
           .attr("width", function(d) { return x0(d[2]) - x0(d[0]); })
         .transition()
@@ -153,11 +153,10 @@ d3.box = function() {
           .remove();
 
       // Update outliers.
-      console.log(outlierIndices);
       var outlier = g.selectAll("circle.outlier")
           .data(outlierIndices);
 
-      
+
       outlier.enter().insert("circle", "text")
           .attr("class", "outlier")
           .attr("r", 5)

@@ -177,6 +177,7 @@ function display(error,medals, hosts) {
 				.append("g")
 				.attr("class", function(d) { console.log("Getting HERE!"); return "annotations"; })
 				.call(hostAnnotations)
+				
     		return d;
     	})
    
