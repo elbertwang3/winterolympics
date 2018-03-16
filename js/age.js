@@ -15,7 +15,7 @@ var freqScale = d3.scaleLinear()
 	.range([aheight, 0])
 
 var boxplot = d3.box()
-    .whiskers(iqr(1.5))
+    .whiskers(iqr(1))
     .width(awidth)
     .height(aheight);
 

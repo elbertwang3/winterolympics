@@ -82,25 +82,25 @@ d3.box = function() {
           .remove();
 
       // Update innerquartile box.
-     var box = g.selectAll("rect.box")
+     var box = g.selectAll(".boxplot")
           .data([quartileData]);
 
       boxEnter = box.enter().append("rect")
-          .attr("class", "box")
+          .attr("class", "boxplot")
           .attr("y", 0)
-          .attr("x", function(d) { return x0(d[0]); })
+          .attr("x", function(d) { console.log("I'm getting here"); return x0(d[0]); })
           .attr("height", height)
           .attr("width", function(d) { return x0(d[2]) - x0(d[0]); })
         .transition()
           .duration(1000)
-          .attr("x", function(d) { console.log("is this what's getting called"); return x1(d[0]); })
+          .attr("x", function(d) { return x1(d[0]); })
           .attr("width", function(d) { return x1(d[2]) - x1(d[0]); });
 
-      //console.log(box.enter())
-      g.selectAll("rect.box")
+      console.log(box)
+      box
           .transition()
           .duration(1000)
-          .attr("x", function(d) { console.log("never getting here"); return x1(d[0]); })
+          .attr("x", function(d) { console.log("Gettting here?"); return x1(d[0]); })
           .attr("width", function(d) { return x1(d[2]) - x1(d[0]); });
       // Update median line.
       var medianLine = g.selectAll("line.median")
@@ -139,6 +139,7 @@ d3.box = function() {
           .attr("x2", x1)
           .style("opacity", 1);
 
+      console.log(whisker);
       whisker.transition()
           .duration(duration)
           .attr("x1", x1)
@@ -182,11 +183,11 @@ d3.box = function() {
       var format = tickFormat || x1.tickFormat(8);
 
       // Update box ticks.
-      var boxTick = g.selectAll("text.box")
+      var boxTick = g.selectAll(".boxtick")
           .data(quartileData);
 
       boxTick.enter().append("text")
-          .attr("class", "box")
+          .attr("class", "boxtick")
           .attr("dy", "-.5em")
           //.attr("dx", function(d, i) { return i & 1 ? 6 : -6 })
           .attr("dx", '0em')
