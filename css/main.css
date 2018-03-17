@@ -16,12 +16,13 @@ body, html {
     padding-top: 2rem;
      left: 0;
   right: 0;
+
 }
 .title p{
 	font-family: "Playfair Display";
 	font-weight: 900;
 	font-size: 48px;
-	line-height: 1rem;
+	  line-height: 2rem;
 	text-align: center;
 	vertical-align: middle;
 	color: white;
@@ -477,6 +478,7 @@ body {
 	border-bottom: 1px solid black;
 	padding-bottom: 15px;
 	padding-top: 15px;
+	max-width: 350px;
 
 }
 
@@ -679,6 +681,13 @@ body {
 		font-size: 10px;
 	}
 
+	.lede {
+		font-size: 12px;
+	}
+
+	.byline {
+		font-size: 12px;
+	}
 	
 
 }

@@ -1,5 +1,5 @@
-var amargin = {top: 15, bottom: 15, right: 25, left: 35},
-awidth = 450 - amargin.right - amargin.left,
+var amargin = {top: 15, bottom: 15, right: 25, left: 45},
+awidth = 350 - amargin.right - amargin.left,
 aheight = 50 - amargin.top - amargin.bottom;
 
 
@@ -66,11 +66,18 @@ function display(error,medals) {
 
 		agesvg.exit().remove()
 
+		var bpchart = $(".box"),
+		   	bpaspect = bpchart.width() / bpchart.height(),
+		    bpparentcontainer = $("#sections1");
+	
+
 		agesvgenter = agesvg
 			.enter()
 			.append("svg")
+			.attr("viewBox", "0 0 " + (awidth + amargin.right + amargin.left) + " " + (aheight + amargin.top + amargin.bottom))
 		  	.attr("width", awidth + amargin.right + amargin.left)
 		  	.attr("height", aheight + amargin.top + amargin.bottom)
+		  	
 		  	.attr("class", "box")
 		  	
 		agesvgenter.append('g')
@@ -91,6 +98,9 @@ function display(error,medals) {
 	
     	i++;
   	}, 2000);
+
+
+
 
 }
 
