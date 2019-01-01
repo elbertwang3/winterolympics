@@ -38,9 +38,9 @@ API_KEY = 'AIzaSyDVY2gfyRxBceJNN6bFESkKMpqPsRnnhSM'
 # Backoff time sets how many minutes to wait between google pings when your API limit is hit
 BACKOFF_TIME = 30
 # Set your output file name here.
-output_filename = 'data/gamesgeocoded.csv'
+output_filename = 'data/gamesgeocoded2.csv'
 # Set your input file here
-input_filename = "data/games.csv"
+input_filename = "data/games.tsv"
 # Specify the column name in your input data that contains addresses here
 #address_column_name = "RESIDENCE"
 # Return Full Google Results? If True, full JSON results from Google are included in output
@@ -49,7 +49,7 @@ RETURN_FULL_RESULTS = False
 #------------------ DATA LOADING --------------------------------
 
 # Read the data to a Pandas Dataframe
-data = pd.read_csv(input_filename)
+data = pd.read_csv(input_filename, sep='\t')
 
 '''if address_column_name not in data.columns:
 	raise ValueError("Missing Address column in input data")'''
@@ -63,7 +63,7 @@ data = pd.read_csv(input_filename)
 # (remove this line / alter for your own dataset)
 #print data[0]
 print data
-addresses = (data['city'] + ',' + data['country']).tolist()
+addresses = (data['City'] + ',' + data['Country']).tolist()
 
 
 #------------------	FUNCTION DEFINITIONS ------------------------
